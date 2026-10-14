@@ -1,6 +1,6 @@
 {
  "name":"@afataa/portfolio","private":true,"version":"1.0.0",
  "scripts":{"dev":"next dev -p 4173","build":"next build","typecheck":"tsc --noEmit"},
- "dependencies":{"next":"^15.5.0","react":"^19.1.0","react-dom":"^19.1.0","@react-three/fiber":"^9.3.0","@react-three/drei":"^10.7.0","three":"^0.180.0","motion":"^12.23.0","lucide-react":"^0.468.0","@calcom/embed-react":"^1.5.3","@afataa/validators":"*","@afataa/ui":"*","clsx":"^2.1.1","tailwind-merge":"^3.3.0"},
+ "dependencies":{"next":"^16.4.1","react":"^19.1.0","react-dom":"^19.1.0","@react-three/fiber":"^9.3.0","@react-three/drei":"^10.7.0","three":"^0.180.0","motion":"^12.23.0","lucide-react":"^0.468.0","@calcom/embed-react":"^1.5.3","@afataa/validators":"*","@afataa/ui":"*","clsx":"^2.1.1","tailwind-merge":"^3.3.0"},
  "devDependencies":{"@types/react":"^19.1.0","@types/react-dom":"^19.1.0","@types/three":"^0.180.0","tailwindcss":"^4.1.0","@tailwindcss/postcss":"^4.1.0"}
 }
