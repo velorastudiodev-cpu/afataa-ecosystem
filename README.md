@@ -1,17 +1,25 @@
 # AFATAA Digital Ecosystem
 
-Dual surface portfolio experience for Ahmad Afataa Kusdianto, built from the complete PRD v2.0.0-PRODUCTION.
+Public portfolio for Ahmad Afataa Kusdianto, implemented from the complete PRD v2.0.0-PRODUCTION.
 
-- `apps/portfolio` — public portfolio, no visitor login.
-- `apps/studio` — separate private content control panel.
-- `packages/design-tokens` — shared Alpine Ivory / Snow Blue / Sky Blue / Champagne Gold tokens.
-- `docs/requirements.md` — implementation coverage and production integration notes.
+## Apps
 
-Run locally with Python's built-in static server:
+- `apps/portfolio` — Next.js 15 static export with React Three Fiber crystal, OSN pedigree, screenshot-backed live project showcase, technical report drawer, real Dijkstra/A* workspace, token customizer, direct contact hub, and optional Cal.com embed.
+- `apps/studio` — retained separate control-panel prototype; its production auth and data bridge are planned after the public site is locked.
+
+## Commands
 
 ```bash
-npm run dev:portfolio
-npm run dev:studio
+npm install
+npm run dev
+npm run typecheck
+npm test
+npm run test:browser
+npm run build
 ```
 
-No external dependency is required for the visual prototype. The production integrations specified in the PRD (Supabase Auth/DB/Storage, Drizzle, Next.js, Cal.com embed, and webhook revalidation) are isolated as the next wiring phase once credentials and deployment targets are available.
+The build emits the deployable static portfolio in `dist/`. All colors follow the Alpine Ivory / Snow Blue / Sky Blue / Champagne Gold system; application code contains no green, emerald, or teal colors.
+
+## Contact state
+
+GitHub, LinkedIn, Instagram, WhatsApp, and email are connected to the supplied values. Discord and Zoom remain visibly marked as unavailable until their real IDs/links are provided. Cal.com is deliberately not rendered as active because `afataa/discovery-call` is not active yet; the portfolio offers direct WhatsApp/email actions instead.

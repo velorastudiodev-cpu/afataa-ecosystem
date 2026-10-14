@@ -11,7 +11,11 @@ The complete PDF PRD v2.0.0-PRODUCTION was read from the attached file and imple
   - https://dzikri-mount-guide.vercel.app
 - Original identity and OSN claims from the PDF are represented without adding new achievements.
 - The Cal.com slug from the PDF is used for the booking CTA: `afataa/discovery-call`.
-- Social URLs and email are intentionally managed in Studio because the PDF did not provide their actual values; no invented contact identifiers were added.
+- The supplied GitHub, LinkedIn, Instagram, WhatsApp, and email values are connected. Discord and Zoom remain unlinked because no real identifiers were provided. Cal.com is not activated because the owner confirmed the slug is not active yet.
+
+## Implementation notes
+
+The portfolio is now a Next.js 15 / React 19 static export. The public project screenshots were captured from the three real URLs in the PRD; Dzikri blocks iframe embedding and Ikbar CMS is sign-in protected, so the UI explains those states and provides direct links. The crystal uses React Three Fiber with a CSS/SVG fallback.
 
 ## Runtime
 

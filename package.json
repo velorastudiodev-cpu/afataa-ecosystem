@@ -1,8 +1,6 @@
 {
-  "name": "afataa-ecosystem",
-  "private": true,
-  "scripts": {
-    "dev:portfolio": "python3 -m http.server 4173 --directory apps/portfolio",
-    "dev:studio": "python3 -m http.server 4174 --directory apps/studio"
-  }
+  "name": "afataa-ecosystem", "private": true, "version": "1.0.0",
+  "packageManager": "npm@11.9.0", "workspaces": ["apps/portfolio", "packages/*"],
+  "scripts": {"dev": "npm run dev -w @afataa/portfolio", "dev:portfolio": "npm run dev", "build": "turbo run build && node scripts/package-static.mjs", "typecheck": "turbo run typecheck", "test": "tsx --test tests/*.test.ts", "test:browser": "node tests/browser.mjs"},
+  "devDependencies": {"turbo": "^2.5.0", "tsx": "^4.20.0", "typescript": "^5.8.0", "@types/node": "^22.15.0", "@playwright/test": "^1.56.0"}
 }

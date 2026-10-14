@@ -1,0 +1,1 @@
+export default function SectionTitle({number,label,title,italic,children}:{number:string;label:string;title:string;italic:string;children:React.ReactNode}){return <><div className="section-label"><span className="mono">{number}</span><span>{label}</span></div><div className="section-intro"><h2>{title} <em>{italic}</em></h2><p>{children}</p></div></>}

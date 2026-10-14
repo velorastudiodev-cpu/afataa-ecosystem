@@ -1,0 +1,1 @@
+{"name":"@afataa/validators","private":true,"version":"1.0.0","exports":{".":"./src/portfolio.ts"},"dependencies":{"zod":"^3.25.0"}}

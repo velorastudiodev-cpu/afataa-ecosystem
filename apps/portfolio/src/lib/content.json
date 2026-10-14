@@ -1,0 +1,148 @@
+{
+  "profile": {
+    "fullName": "Ahmad Afataa Kusdianto",
+    "roles": [
+      "Web Developer",
+      "Web Designer",
+      "Software Developer"
+    ],
+    "headlineBadge": "Rank #1 & Gold Medalist OSN-K · Semifinalist OSN Informatika SMA 2026",
+    "heroTagline": "Crafting High-Precision Web Experiences & Autonomous Software Systems.",
+    "shortBio": "Olympiad-level algorithmic thinking meets considered interface design. I build websites that feel clear, and software that gives people the freedom to manage their own systems.",
+    "availabilityText": "Available for projects & technical consultation",
+    "calComLink": "afataa/discovery-call",
+    "bookingVerified": false,
+    "socials": {
+      "github": "https://github.com/velorastudiodev-cpu",
+      "linkedin": "https://id.linkedin.com/in/ahmad-afataa-kusdianto-a9b7ab421",
+      "instagram": "https://www.instagram.com/velorastudio.hq/",
+      "whatsapp": "https://wa.me/6685179681576",
+      "discord": null,
+      "zoom": null,
+      "email": "velorastudiodev@gmail.com"
+    }
+  },
+  "achievements": [
+    {
+      "id": "osnk-2026",
+      "title": "Peringkat 1 & Medali Emas",
+      "organization": "OSN Informatika Tingkat Kabupaten/Kota",
+      "year": 2026,
+      "rankOrMedal": "Rank #1 · Gold medal",
+      "highlightScore": "Highest score",
+      "description": "Algoritma, struktur data, pemrograman dinamis, dan teori graf.",
+      "isGoldHighlight": true
+    },
+    {
+      "id": "osn-2026",
+      "title": "Semifinalis Nasional",
+      "organization": "OSN Informatika SMA Tingkat Nasional",
+      "year": 2026,
+      "rankOrMedal": "National semifinalist",
+      "description": "Pemecahan masalah komputasi tingkat lanjut dengan batasan waktu eksekusi yang ketat.",
+      "isGoldHighlight": false
+    }
+  ],
+  "masterpieces": [
+    {
+      "id": "ikbar",
+      "slug": "ikbar",
+      "title": "Ikbar Barbershop",
+      "subtitle": "Flagship digital storefront",
+      "category": "FULLSTACK_ECOSYSTEM",
+      "liveUrl": "https://ikbar-barbershop.vercel.app",
+      "techStack": [],
+      "summary": "A modern grooming platform with a clear service catalogue, transparent pricing, and a fast journey from first impression to booking.",
+      "technicalReportMdx": "## The brief\nTranslate a modern barbershop into a digital storefront: a clean, masculine visual identity, clear services and prices, and navigation designed for mobile customers.\n\n## The experience\nThe storefront brings the brand, service catalogue, and customer journey into one public-facing experience. Its companion customizer gives the owner a separate place to maintain the website.\n\n## The system boundary\nThis is the customer-facing half of the Ikbar ecosystem. The management dashboard is presented as a separate project below. The PRD describes the product relationship; infrastructure and performance measurements are not supplied.\n\n## Design focus\nMake the services easy to compare and the next action easy to find. Keep the visual character consistent across small and large screens.",
+      "featuredOrder": 1,
+      "isPublished": true,
+      "image": "/projects/ikbar.webp",
+      "embeddable": true,
+      "report": [
+        {
+          "heading": "The brief",
+          "body": "Translate a modern barbershop into a digital storefront: a clean, masculine visual identity, clear services and prices, and navigation designed for mobile customers."
+        },
+        {
+          "heading": "The experience",
+          "body": "The storefront brings the brand, service catalogue, and customer journey into one public-facing experience. Its companion customizer gives the owner a separate place to maintain the website."
+        },
+        {
+          "heading": "The system boundary",
+          "body": "This is the customer-facing half of the Ikbar ecosystem. The management dashboard is presented as a separate project below. The PRD describes the product relationship; infrastructure and performance measurements are not supplied."
+        },
+        {
+          "heading": "Design focus",
+          "body": "Make the services easy to compare and the next action easy to find. Keep the visual character consistent across small and large screens."
+        }
+      ],
+      "pairedDashboardUrl": "https://ikbar-barbershop-5rx3.vercel.app/dashboard"
+    },
+    {
+      "id": "cms",
+      "slug": "cms",
+      "title": "Ikbar Autonomous CMS",
+      "subtitle": "Self-service website customizer",
+      "category": "AUTONOMOUS_CMS",
+      "liveUrl": "https://ikbar-barbershop-5rx3.vercel.app/dashboard",
+      "techStack": [],
+      "summary": "A custom control panel that lets the barbershop owner manage content, update services, and shape the storefront without editing code.",
+      "technicalReportMdx": "## The brief\nGive the barbershop owner control over everyday website changes without a recurring developer handoff.\n\n## The management experience\nThe custom dashboard is designed for editing content, updating services, and adjusting the appearance of the main website. These capabilities are described in the project brief.\n\n## The product relationship\nThe dashboard and public storefront form a connected ecosystem: one serves customers, while the other supports the business owner. Specific database, authentication, and deployment internals are not documented in the supplied PRD.\n\n## Engineering focus\nMake content controls understandable to a non-developer. Keep editing and public browsing as separate experiences while preserving a consistent brand.",
+      "featuredOrder": 2,
+      "isPublished": true,
+      "image": "/projects/cms.webp",
+      "embeddable": true,
+      "report": [
+        {
+          "heading": "The brief",
+          "body": "Give the barbershop owner control over everyday website changes without a recurring developer handoff."
+        },
+        {
+          "heading": "The management experience",
+          "body": "The custom dashboard is designed for editing content, updating services, and adjusting the appearance of the main website. These capabilities are described in the project brief."
+        },
+        {
+          "heading": "The product relationship",
+          "body": "The dashboard and public storefront form a connected ecosystem: one serves customers, while the other supports the business owner. Specific database, authentication, and deployment internals are not documented in the supplied PRD."
+        },
+        {
+          "heading": "Engineering focus",
+          "body": "Make content controls understandable to a non-developer. Keep editing and public browsing as separate experiences while preserving a consistent brand."
+        }
+      ]
+    },
+    {
+      "id": "dzikri",
+      "slug": "dzikri",
+      "title": "Dzikri Mount Guide",
+      "subtitle": "Expedition & mountaineering platform",
+      "category": "WEB_PLATFORM",
+      "liveUrl": "https://dzikri-mount-guide.vercel.app",
+      "techStack": [],
+      "summary": "An expedition platform that brings mountain routes, logistics, and guide profiles together before the first step of the journey.",
+      "technicalReportMdx": "## The brief\nBuild an informative and immersive digital home for mountain guiding and expeditions, covering routes, preparation, and guide profiles.\n\n## The experience\nRoute information, logistics, and people are the core of the story. The interface helps visitors understand what a mountain journey involves before making plans.\n\n## Design focus\nCombine the atmosphere of the outdoors with practical information. The goal is a clear reading experience across desktop and mobile, without hiding essential preparation details.\n\n## Preview note\nThe live site prevents embedding in another website. This portfolio provides a captured screenshot and a direct link so the full experience remains accessible.",
+      "featuredOrder": 3,
+      "isPublished": true,
+      "image": "/projects/dzikri.webp",
+      "embeddable": false,
+      "report": [
+        {
+          "heading": "The brief",
+          "body": "Build an informative and immersive digital home for mountain guiding and expeditions, covering routes, preparation, and guide profiles."
+        },
+        {
+          "heading": "The experience",
+          "body": "Route information, logistics, and people are the core of the story. The interface helps visitors understand what a mountain journey involves before making plans."
+        },
+        {
+          "heading": "Design focus",
+          "body": "Combine the atmosphere of the outdoors with practical information. The goal is a clear reading experience across desktop and mobile, without hiding essential preparation details."
+        },
+        {
+          "heading": "Preview note",
+          "body": "The live site prevents embedding in another website. This portfolio provides a captured screenshot and a direct link so the full experience remains accessible."
+        }
+      ]
+    }
+  ]
+}

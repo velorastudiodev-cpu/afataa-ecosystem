@@ -1,0 +1,7 @@
+:root {
+  --bg-cream:#FAF8F5; --bg-snow:#F2F7FC; --surface-white:#FFFFFF;
+  --surface-glass:rgba(255,255,255,.78); --blue-ice:#E3EFFB; --blue-sky:#6BA3D6;
+  --blue-glacial:#3B82C4; --blue-deep:#1E3A5F; --gold-tint:#FBF6EB;
+  --gold-soft:#D4AF6A; --gold-deep:#9E7B3B; --ink-primary:#0F172A;
+  --ink-secondary:#475569; --ink-muted:#94A3B8; --border-subtle:#E6E4DD; --border-blue:#D0E3F5;
+}

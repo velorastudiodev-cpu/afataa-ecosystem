@@ -1,0 +1,5 @@
+import type {Metadata} from 'next';
+import './globals.css';
+const origin='https://afataa-portfolio.privgpwow.chatgpt.site';
+export const metadata:Metadata={title:'Ahmad Afataa Kusdianto — Web, Design & Software',description:'Web Developer, Web Designer, and Software Developer. OSN-K Rank #1 & Gold Medalist, and OSN Informatika SMA 2026 semifinalist. Explore live projects and interactive experiments.',metadataBase:new URL(origin),alternates:{canonical:'/'},icons:{icon:'/icon.svg'},openGraph:{title:'Ahmad Afataa Kusdianto',description:'High-precision web experiences. Autonomous software systems.',type:'website',url:origin,images:[{url:'/social-preview.png',width:1200,height:630,alt:'Ahmad Afataa Kusdianto portfolio'}]},twitter:{card:'summary_large_image'}};
+export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="en"><head><link rel="preload" href="/fonts/jakarta.woff2" as="font" type="font/woff2" crossOrigin="anonymous"/><link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossOrigin="anonymous"/></head><body>{children}</body></html>}
