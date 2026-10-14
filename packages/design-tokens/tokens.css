@@ -1,0 +1,15 @@
+/* Shared initial palette. Sky blue and champagne values come from the PRD.
+   Other values are provisional interpretations of the named neutral palette.
+   Use dark text for legibility; accents are not default text colors. */
+:root {
+  --afataa-ivory: #faf8f3;
+  --afataa-white: #ffffff;
+  --afataa-snow: #f3f7fb;
+  --afataa-sky: #5b9bd5;
+  --afataa-champagne: #c8a253;
+  --afataa-ink: #202c3c;
+  --afataa-muted: #536173;
+  --afataa-border: #dde3eb;
+  --afataa-status-active: var(--afataa-sky);
+  --afataa-status-success: var(--afataa-champagne);
+}

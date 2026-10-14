@@ -1,0 +1,8 @@
+{
+  "name": "afataa-ecosystem",
+  "private": true,
+  "scripts": {
+    "dev:portfolio": "python3 -m http.server 4173 --directory apps/portfolio",
+    "dev:studio": "python3 -m http.server 4174 --directory apps/studio"
+  }
+}
