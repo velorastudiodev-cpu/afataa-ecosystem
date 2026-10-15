@@ -121,12 +121,23 @@ export default function Masterpieces({ projects }: { projects: Masterpiece[] }) 
         <div className="showcase-rail">
           <div className="project-select" role="group" aria-label="Choose featured project">
             {projects.map((p, i) => (
-              <button key={p.id} aria-pressed={index === i} onClick={() => choose(i)}>
-                <span>0{i + 1}</span>
-                {['Storefront', 'Customizer', 'Expedition'][i]}
+              <button
+                key={p.id}
+                aria-label={`Show ${p.title}`}
+                aria-pressed={index === i}
+                onClick={() => choose(i)}
+              >
+                <span className="project-index">0{i + 1}</span>
+                <span className="project-name project-name-desktop">
+                  {['Storefront', 'Customizer', 'Expedition'][i]}
+                </span>
+                <span className="project-name project-name-mobile">
+                  {p.id === 'cms' ? 'Ikbar CMS' : p.id === 'dzikri' ? 'Dzikri Mount' : 'Ikbar Barbershop'}
+                </span>
               </button>
             ))}
           </div>
+          <span className="showcase-hint">Swipe a preview · tap a project</span>
           <button
             className="icon-button"
             aria-label={paused ? 'Start automatic rotation' : 'Pause automatic rotation'}
