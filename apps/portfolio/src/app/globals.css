@@ -60,3 +60,82 @@ section[id],div[id=top]{scroll-margin-top:105px}.skip-link{position:fixed;top:12
 .footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:23px 0 35px;border-top:1px solid var(--line);font-size:10px}
 @media(max-width:900px){.footer-calendar{grid-template-columns:1fr;gap:28px;padding-top:62px}.footer-calendar-copy{max-width:560px}.calendar-shell{max-width:620px}}
 @media(max-width:650px){.footer{padding-left:5vw;padding-right:5vw}.footer-calendar{padding-bottom:55px}.calendar-shell{padding:14px}.calendar-head strong{font-size:18px}.calendar-day{min-height:36px}.footer-bottom{flex-wrap:wrap;gap:12px}.footer-bottom span:last-child{display:none}}
+
+/* Mobile composition: let the first viewport introduce the crystal before the copy. */
+@media(max-width:650px){
+  html,body{overflow-x:hidden}
+  .nav-wrap{padding:0 12px}
+  .nav{width:100%;padding-right:10px}
+  .hero{display:flex;flex-direction:column;align-items:stretch;width:100%;padding:96px 18px 24px;gap:0}
+  .crystal-stage{order:-1;width:100%;max-width:430px;height:clamp(300px,88vw,390px);margin:0 auto 14px}
+  .crystal-halo{width:min(68vw,270px);height:min(68vw,270px)}
+  .crystal-grid{width:min(80vw,315px);height:min(80vw,315px)}
+  .crystal-fallback svg{width:min(96vw,390px)}
+  .crystal-label{padding:6px 8px;font-size:9px;white-space:nowrap}
+  .label-logic{top:7%;left:0}
+  .label-design{top:34%;right:0}
+  .label-systems{bottom:9%;left:4%}
+  .crystal-caption{right:2%;bottom:0}
+  .hero-copy{width:100%}
+  .hero-name{margin-top:12px}
+  .hero h1{max-width:560px;font-size:clamp(43px,12.5vw,64px);line-height:.98;margin-top:15px}
+  .hero-subheading{max-width:330px;font-size:14px;line-height:1.45}
+  .hero-lede{max-width:520px;font-size:13px;line-height:1.75}
+  .role-row{margin:18px 0 24px}
+  .hero-actions{gap:14px}
+  .hero-actions .button{padding:12px 16px}
+  .hero-meta{margin-top:25px}
+  .hero-rule{margin:6px 18px 0;padding:10px 0}
+  .hero-rule>span:first-child{display:none}
+  .hero-rule>span:nth-child(2){flex:1;font-size:8px;line-height:1.5}
+  .hero-rule>span:last-child{font-size:8px;white-space:nowrap}
+  .section,.work{padding-left:18px;padding-right:18px}
+  .section{padding-top:82px}
+  .section-label{gap:15px;font-size:10px}
+  .section-intro{margin-bottom:30px}
+  .section-intro h2{font-size:clamp(40px,12vw,53px)}
+  .achievement-panel,.pillars-panel{padding:21px}
+  .achievement-main{align-items:flex-start;margin:31px 0 23px}
+  .achievement-main h3{font-size:clamp(26px,8.5vw,34px)}
+  .toolbox{padding:22px 20px}
+  .tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .work{margin-top:74px;padding-bottom:82px}
+  .showcase{width:100%;padding:10px}
+  .showcase-rail{overflow:hidden}
+  .project-select{min-width:0;overflow-x:auto;scrollbar-width:none}
+  .project-select::-webkit-scrollbar{display:none}
+  .project-select button{flex:0 0 auto}
+  .spotlight{padding:24px 7px 16px}
+  .spotlight h3{font-size:clamp(42px,13vw,56px)}
+  .screen-wrap{width:100%}
+  .lab-panel{padding:23px 17px}
+  .contact{padding-top:82px;padding-bottom:76px}
+  .contact-copy h2{font-size:clamp(46px,14vw,60px)}
+  .booking-card{padding:20px}
+  .social-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .footer-calendar{display:flex;flex-direction:column;align-items:stretch;width:100%;gap:25px;padding:56px 0 52px}
+  .footer-calendar-copy{max-width:none}
+  .footer-calendar-copy h2{font-size:clamp(35px,10vw,48px)}
+  .calendar-shell{width:100%;min-width:0;padding:13px;border-radius:15px;overflow:hidden}
+  .calendar-head{gap:10px;margin-bottom:13px}
+  .calendar-head strong{font-size:clamp(17px,5.4vw,21px)}
+  .calendar-grid{width:100%;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+  .calendar-weekday{font-size:8px;padding:4px 0}
+  .calendar-day{display:grid;visibility:visible;min-width:0;min-height:42px;color:var(--deep)!important;font-size:12px;opacity:1}
+  .calendar-day span{display:block;visibility:visible;color:inherit;line-height:1}
+  .calendar-day.is-outside{opacity:.42}
+  .calendar-day.is-today{color:var(--gold-deep)!important}
+  .calendar-footnote{font-size:8px;line-height:1.5}
+}
+
+@media(max-width:360px){
+  .hero{padding-left:14px;padding-right:14px}
+  .crystal-stage{height:292px}
+  .crystal-label{font-size:8px;padding:5px 6px}
+  .section,.work{padding-left:14px;padding-right:14px}
+  .social-grid{grid-template-columns:1fr}
+  .social-card:last-child{grid-column:auto}
+  .calendar-shell{padding:9px}
+  .calendar-grid{gap:2px}
+  .calendar-day{min-height:39px;font-size:11px}
+}
