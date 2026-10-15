@@ -26,14 +26,14 @@ import {
 } from '@/lib/animations';
 
 const tools = [
-  { name: 'TypeScript', detail: 'Typed foundations', icon: Code2 },
-  { name: 'C++', detail: 'Competitive logic', icon: Terminal },
-  { name: 'Next.js', detail: 'Web architecture', icon: ArrowUpRight },
-  { name: 'React', detail: 'Interface systems', icon: Atom },
-  { name: 'Tailwind', detail: 'Design tokens', icon: Wind },
-  { name: 'Node.js', detail: 'Server-side logic', icon: Box },
-  { name: 'PostgreSQL', detail: 'Structured data', icon: Database },
-  { name: 'Figma', detail: 'Design exploration', icon: Component },
+  { name: 'TypeScript', detail: 'Fondasi kode bertipe ketat', icon: Code2 },
+  { name: 'C++', detail: 'Komputasi & algoritma kompetitif', icon: Terminal },
+  { name: 'Next.js', detail: 'Arsitektur aplikasi web modern', icon: ArrowUpRight },
+  { name: 'React', detail: 'Sistem komponen antarmuka', icon: Atom },
+  { name: 'Tailwind CSS', detail: 'Sistem token desain & tata letak', icon: Wind },
+  { name: 'Node.js', detail: 'Pemrosesan logika sisi server', icon: Box },
+  { name: 'PostgreSQL', detail: 'Manajemen basis data terstruktur', icon: Database },
+  { name: 'Figma', detail: 'Eksplorasi desain & prototipe UI/UX', icon: Component },
 ];
 
 export default function Pedigree() {
@@ -45,12 +45,13 @@ export default function Pedigree() {
     <section id="pedigree" className="section pedigree">
       <SectionTitle
         number="01"
-        label="Algorithmic pedigree"
-        title="Proof in the"
-        italic="details."
+        label="Rekam jejak algoritmik & keahlian"
+        title="Keunggulan teknis yang terbukti di setiap"
+        italic="detail."
       >
-        Precision is a practice. From competitive programming to client
-        systems, every decision has a reason.
+        Presisi adalah standar kerja yang dibangun melalui latihan ketat. Mulai dari
+        pemrograman kompetitif tingkat nasional hingga arsitektur sistem klien, setiap
+        keputusan teknis dirancang dengan landasan yang terukur.
       </SectionTitle>
 
       <div className="pedigree-grid">
@@ -63,7 +64,7 @@ export default function Pedigree() {
           animate={achievementReveal.controls}
         >
           <div className="card-top">
-            <span className="mono">Competitive informatics</span>
+            <span className="mono">Kompetisi informatika &amp; algoritma</span>
             <span className="year">2026</span>
           </div>
           <div className="achievement-main">
@@ -74,14 +75,14 @@ export default function Pedigree() {
             </div>
             <div>
               <h3>
-                Highest score.
+                Peraih skor tertinggi
                 <br />
-                <em>Gold standard.</em>
+                <em>&amp; standar medali emas.</em>
               </h3>
               <p>
-                Algorithmic precision,
+                Ketepatan logika algoritmik
                 <br />
-                tested under pressure.
+                yang teruji dalam batasan ketat.
               </p>
             </div>
           </div>
@@ -94,8 +95,8 @@ export default function Pedigree() {
                   <p>{a.organization}</p>
                   <span className="record-detail">
                     {i === 0
-                      ? 'Highest score · Algorithms, data structures & graph theory'
-                      : 'Advanced computational problem-solving'}
+                      ? 'Peraih skor tertinggi · Algoritma, struktur data & teori graf'
+                      : 'Pemecahan masalah komputasi tingkat lanjut'}
                   </span>
                 </div>
               </div>
@@ -111,22 +112,22 @@ export default function Pedigree() {
           initial="hidden"
           animate={pillarsReveal.controls}
         >
-          <span className="mono">Three ways I build</span>
+          <span className="mono">Tiga pilar pengembangan solusi digital</span>
           {[
             {
               icon: PenTool,
-              name: 'Web Designer',
-              text: 'A visual system with purpose. Measured typography, clear hierarchy, intuitive journeys.',
+              name: 'Desainer Web & Antarmuka (UI/UX)',
+              text: 'Sistem visual yang dirancang dengan tujuan terukur, tipografi yang proporsional, hierarki informasi yang jernih, serta alur navigasi pengguna yang intuitif.',
             },
             {
               icon: Braces,
-              name: 'Web Developer',
-              text: 'Responsive interfaces built around performance, clarity, and the person using them.',
+              name: 'Pengembang Situs Web Modern',
+              text: 'Pengembangan antarmuka web responsif yang mengutamakan kecepatan muat halaman, kejelasan struktur kode, dan kenyamanan pengguna di berbagai perangkat.',
             },
             {
               icon: Layers,
-              name: 'Software Developer',
-              text: 'Self-service tools and custom systems that put the controls in your hands.',
+              name: 'Pengembang Perangkat Lunak & Sistem CMS',
+              text: 'Pembangunan perangkat lunak kustom dan dasbor manajemen konten mandiri yang memudahkan pemilik bisnis mengelola sistemnya tanpa bergantung pada pengembang.',
             },
           ].map(({ icon: Icon, name, text }, i) => (
             <div className="pillar" key={name}>
@@ -151,13 +152,13 @@ export default function Pedigree() {
           animate={toolboxReveal.controls}
         >
           <div className="toolbox-heading">
-            <span className="mono">The workbench</span>
+            <span className="mono">Perangkat kerja &amp; teknologi</span>
             <h3>
-              Different tools.
+              Beragam teknologi modern
               <br />
-              <em>One considered system.</em>
+              <em>dalam satu ekosistem terpadu.</em>
             </h3>
-            <p>From the first sketch to the final query.</p>
+            <p>Mulai dari perancangan antarmuka awal hingga pengelolaan kueri basis data produksi.</p>
           </div>
           <motion.div
             className="tool-grid"

@@ -2,14 +2,14 @@
   "profile": {
     "fullName": "Ahmad Afataa Kusdianto",
     "roles": [
-      "Web Developer",
-      "Web Designer",
-      "Software Developer"
+      "Pengembang Web",
+      "Desainer Web & UI/UX",
+      "Pengembang Perangkat Lunak"
     ],
-    "headlineBadge": "Independent portfolio · Web · Design · Software",
-    "heroTagline": "Crafting High-Precision Web Experiences & Autonomous Software Systems.",
-    "shortBio": "Olympiad-level algorithmic thinking meets considered interface design. I build websites that feel clear, and software that gives people the freedom to manage their own systems.",
-    "availabilityText": "Available for projects & technical consultation",
+    "headlineBadge": "Portofolio Resmi · Pengembangan Web · Desain Antarmuka · Perangkat Lunak",
+    "heroTagline": "Merancang Pengalaman Situs Web Berpresisi Tinggi serta Sistem Perangkat Lunak Mandiri.",
+    "shortBio": "Memadukan ketajaman logika algoritma tingkat olimpiade nasional dengan desain antarmuka pengguna yang terukur. Saya membangun situs web yang cepat dan jernih, serta perangkat lunak kustom yang memberikan kebebasan penuh bagi Anda untuk mengelola sistem secara mandiri.",
+    "availabilityText": "Tersedia untuk Proyek Pengembangan & Konsultasi Teknis",
     "calComLink": "velora-studio-dev-u8aodd",
     "bookingVerified": true,
     "socials": {
@@ -28,9 +28,9 @@
       "title": "Peringkat 1 & Medali Emas",
       "organization": "OSN Informatika Tingkat Kabupaten/Kota",
       "year": 2026,
-      "rankOrMedal": "Rank #1 · Gold medal",
-      "highlightScore": "Highest score",
-      "description": "Algoritma, struktur data, pemrograman dinamis, dan teori graf.",
+      "rankOrMedal": "Peringkat 1 · Medali Emas",
+      "highlightScore": "Peraih skor tertinggi",
+      "description": "Penguasaan algoritma, struktur data, pemrograman dinamis, dan teori graf.",
       "isGoldHighlight": true
     },
     {
@@ -38,8 +38,8 @@
       "title": "Semifinalis Nasional",
       "organization": "OSN Informatika SMA Tingkat Nasional",
       "year": 2026,
-      "rankOrMedal": "National semifinalist",
-      "description": "Pemecahan masalah komputasi tingkat lanjut dengan batasan waktu eksekusi yang ketat.",
+      "rankOrMedal": "Semifinalis Tingkat Nasional",
+      "description": "Pemecahan masalah komputasi tingkat lanjut dan optimasi kompleksitas algoritma.",
       "isGoldHighlight": false
     }
   ],
@@ -47,33 +47,33 @@
     {
       "id": "ikbar",
       "slug": "ikbar",
-      "title": "Ikbar Barbershop",
-      "subtitle": "Flagship digital storefront",
+      "title": "Ikbar Barbershop — Platform Web Layanan Grooming Modern",
+      "subtitle": "Ekosistem full-stack · Etalase digital",
       "category": "FULLSTACK_ECOSYSTEM",
       "liveUrl": "https://ikbar-barbershop.vercel.app",
       "techStack": [],
-      "summary": "A modern grooming platform with a clear service catalogue, transparent pricing, and a fast journey from first impression to booking.",
-      "technicalReportMdx": "## The brief\nTranslate a modern barbershop into a digital storefront: a clean, masculine visual identity, clear services and prices, and navigation designed for mobile customers.\n\n## The experience\nThe storefront brings the brand, service catalogue, and customer journey into one public-facing experience. Its companion customizer gives the owner a separate place to maintain the website.\n\n## The system boundary\nThis is the customer-facing half of the Ikbar ecosystem. The management dashboard is presented as a separate project below. The PRD describes the product relationship; infrastructure and performance measurements are not supplied.\n\n## Design focus\nMake the services easy to compare and the next action easy to find. Keep the visual character consistent across small and large screens.",
+      "summary": "Platform situs web pangkas rambut dan perawatan pria modern yang dilengkapi katalog layanan terstruktur, daftar harga transparan, serta alur pemesanan jadwal yang cepat dari kesan pertama hingga reservasi pelanggan.",
+      "technicalReportMdx": "## Ringkasan kebutuhan\nMenerjemahkan bisnis pangkas rambut modern menjadi etalase digital dengan identitas visual yang tegas, katalog layanan yang jelas, daftar harga transparan, dan navigasi yang nyaman bagi pelanggan seluler.\n\n## Pengalaman pengguna\nEtalase ini menyatukan identitas merek, katalog layanan, dan alur pelanggan dalam satu pengalaman digital. Sistem customizer pendamping memberi pemilik tempat untuk mengelola situs.\n\n## Batas sistem\nProyek ini merupakan sisi publik ekosistem Ikbar. Dasbor manajemen ditampilkan sebagai proyek terpisah di bawahnya. Detail infrastruktur dan metrik performa tidak tercantum dalam dokumen proyek.\n\n## Fokus desain\nMembuat layanan mudah dibandingkan dan langkah pemesanan mudah ditemukan, dengan karakter visual yang konsisten di desktop maupun perangkat seluler.",
       "featuredOrder": 1,
       "isPublished": true,
       "image": "/projects/ikbar.webp",
       "embeddable": true,
       "report": [
         {
-          "heading": "The brief",
-          "body": "Translate a modern barbershop into a digital storefront: a clean, masculine visual identity, clear services and prices, and navigation designed for mobile customers."
+          "heading": "Ringkasan kebutuhan",
+          "body": "Menerjemahkan bisnis pangkas rambut modern menjadi etalase digital dengan identitas visual yang tegas, katalog layanan yang jelas, daftar harga transparan, dan navigasi yang nyaman bagi pelanggan seluler."
         },
         {
-          "heading": "The experience",
-          "body": "The storefront brings the brand, service catalogue, and customer journey into one public-facing experience. Its companion customizer gives the owner a separate place to maintain the website."
+          "heading": "Pengalaman pengguna",
+          "body": "Etalase ini menyatukan identitas merek, katalog layanan, dan alur pelanggan dalam satu pengalaman digital. Sistem customizer pendamping memberi pemilik tempat untuk mengelola situs."
         },
         {
-          "heading": "The system boundary",
-          "body": "This is the customer-facing half of the Ikbar ecosystem. The management dashboard is presented as a separate project below. The PRD describes the product relationship; infrastructure and performance measurements are not supplied."
+          "heading": "Batas sistem",
+          "body": "Proyek ini merupakan sisi publik ekosistem Ikbar. Dasbor manajemen ditampilkan sebagai proyek terpisah di bawahnya. Detail infrastruktur dan metrik performa tidak tercantum dalam dokumen proyek."
         },
         {
-          "heading": "Design focus",
-          "body": "Make the services easy to compare and the next action easy to find. Keep the visual character consistent across small and large screens."
+          "heading": "Fokus desain",
+          "body": "Membuat layanan mudah dibandingkan dan langkah pemesanan mudah ditemukan, dengan karakter visual yang konsisten di desktop maupun perangkat seluler."
         }
       ],
       "pairedDashboardUrl": "https://ikbar-barbershop-5rx3.vercel.app/dashboard"
@@ -81,66 +81,66 @@
     {
       "id": "cms",
       "slug": "cms",
-      "title": "Ikbar Autonomous CMS",
-      "subtitle": "Self-service website customizer",
+      "title": "Ikbar Autonomous CMS — Dasbor Kendali Situs Web Mandiri",
+      "subtitle": "Sistem manajemen konten (CMS) · Dasbor kustom",
       "category": "AUTONOMOUS_CMS",
       "liveUrl": "https://ikbar-barbershop-5rx3.vercel.app/dashboard",
       "techStack": [],
-      "summary": "A custom control panel that lets the barbershop owner manage content, update services, and shape the storefront without editing code.",
-      "technicalReportMdx": "## The brief\nGive the barbershop owner control over everyday website changes without a recurring developer handoff.\n\n## The management experience\nThe custom dashboard is designed for editing content, updating services, and adjusting the appearance of the main website. These capabilities are described in the project brief.\n\n## The product relationship\nThe dashboard and public storefront form a connected ecosystem: one serves customers, while the other supports the business owner. Specific database, authentication, and deployment internals are not documented in the supplied PRD.\n\n## Engineering focus\nMake content controls understandable to a non-developer. Keep editing and public browsing as separate experiences while preserving a consistent brand.",
+      "summary": "Panel kendali administrasi kustom yang memungkinkan pemilik bisnis mengelola konten halaman, memperbarui daftar layanan serta harga, dan menyesuaikan tampilan situs utama secara langsung tanpa perlu menyentuh kode pemrograman.",
+      "technicalReportMdx": "## Ringkasan kebutuhan\nMemberikan pemilik barbershop kendali atas perubahan situs sehari-hari tanpa perlu menyerahkan setiap pembaruan kepada pengembang.\n\n## Pengalaman manajemen\nDasbor kustom dirancang untuk mengedit konten, memperbarui layanan, dan menyesuaikan tampilan situs utama. Kemampuan ini mengikuti kebutuhan yang dijelaskan dalam ringkasan proyek.\n\n## Hubungan produk\nDasbor dan etalase publik membentuk ekosistem yang saling terhubung: satu melayani pelanggan, sementara yang lain membantu pemilik bisnis mengelola sistem. Detail database, autentikasi, dan deployment tidak didokumentasikan dalam PRD.\n\n## Fokus rekayasa\nMembuat kontrol konten mudah dipahami oleh pengguna nonteknis sambil menjaga pengalaman pengeditan dan penjelajahan publik sebagai dua area terpisah.",
       "featuredOrder": 2,
       "isPublished": true,
       "image": "/projects/cms.webp",
       "embeddable": true,
       "report": [
         {
-          "heading": "The brief",
-          "body": "Give the barbershop owner control over everyday website changes without a recurring developer handoff."
+          "heading": "Ringkasan kebutuhan",
+          "body": "Memberikan pemilik barbershop kendali atas perubahan situs sehari-hari tanpa perlu menyerahkan setiap pembaruan kepada pengembang."
         },
         {
-          "heading": "The management experience",
-          "body": "The custom dashboard is designed for editing content, updating services, and adjusting the appearance of the main website. These capabilities are described in the project brief."
+          "heading": "Pengalaman manajemen",
+          "body": "Dasbor kustom dirancang untuk mengedit konten, memperbarui layanan, dan menyesuaikan tampilan situs utama. Kemampuan ini mengikuti kebutuhan yang dijelaskan dalam ringkasan proyek."
         },
         {
-          "heading": "The product relationship",
-          "body": "The dashboard and public storefront form a connected ecosystem: one serves customers, while the other supports the business owner. Specific database, authentication, and deployment internals are not documented in the supplied PRD."
+          "heading": "Hubungan produk",
+          "body": "Dasbor dan etalase publik membentuk ekosistem yang saling terhubung: satu melayani pelanggan, sementara yang lain membantu pemilik bisnis mengelola sistem. Detail database, autentikasi, dan deployment tidak didokumentasikan dalam PRD."
         },
         {
-          "heading": "Engineering focus",
-          "body": "Make content controls understandable to a non-developer. Keep editing and public browsing as separate experiences while preserving a consistent brand."
+          "heading": "Fokus rekayasa",
+          "body": "Membuat kontrol konten mudah dipahami oleh pengguna nonteknis sambil menjaga pengalaman pengeditan dan penjelajahan publik sebagai dua area terpisah."
         }
       ]
     },
     {
       "id": "dzikri",
       "slug": "dzikri",
-      "title": "Dzikri Mount Guide",
-      "subtitle": "Expedition & mountaineering platform",
+      "title": "Dzikri Mount Guide — Platform Panduan Ekspedisi & Pendakian Gunung",
+      "subtitle": "Platform web & informasi · Ekspedisi",
       "category": "WEB_PLATFORM",
       "liveUrl": "https://dzikri-mount-guide.vercel.app",
       "techStack": [],
-      "summary": "An expedition platform that brings mountain routes, logistics, and guide profiles together before the first step of the journey.",
-      "technicalReportMdx": "## The brief\nBuild an informative and immersive digital home for mountain guiding and expeditions, covering routes, preparation, and guide profiles.\n\n## The experience\nRoute information, logistics, and people are the core of the story. The interface helps visitors understand what a mountain journey involves before making plans.\n\n## Design focus\nCombine the atmosphere of the outdoors with practical information. The goal is a clear reading experience across desktop and mobile, without hiding essential preparation details.\n\n## Preview note\nThe live site prevents embedding in another website. This portfolio provides a captured screenshot and a direct link so the full experience remains accessible.",
+      "summary": "Platform digital panduan pendakian gunung dan ekspedisi alam yang menyajikan informasi rute pendakian, persiapan logistik, serta profil pemandu profesional secara terpadu sebelum memulai perjalanan.",
+      "technicalReportMdx": "## Ringkasan kebutuhan\nMembangun rumah digital yang informatif dan imersif untuk pemanduan gunung dan ekspedisi, mencakup rute, persiapan perjalanan, dan profil pemandu.\n\n## Pengalaman pengguna\nInformasi rute, logistik, dan profil pemandu menjadi inti cerita. Antarmuka membantu pengunjung memahami kebutuhan perjalanan sebelum menyusun rencana.\n\n## Fokus desain\nMenggabungkan atmosfer alam dengan informasi praktis dalam pengalaman membaca yang jernih di desktop dan perangkat seluler.\n\n## Catatan pratinjau\nSitus ini membatasi penyematan di website lain. Portofolio menyediakan tangkapan layar dan tautan langsung agar pengalaman lengkap tetap dapat diakses.",
       "featuredOrder": 3,
       "isPublished": true,
       "image": "/projects/dzikri.webp",
       "embeddable": false,
       "report": [
         {
-          "heading": "The brief",
-          "body": "Build an informative and immersive digital home for mountain guiding and expeditions, covering routes, preparation, and guide profiles."
+          "heading": "Ringkasan kebutuhan",
+          "body": "Membangun rumah digital yang informatif dan imersif untuk pemanduan gunung dan ekspedisi, mencakup rute, persiapan perjalanan, dan profil pemandu."
         },
         {
-          "heading": "The experience",
-          "body": "Route information, logistics, and people are the core of the story. The interface helps visitors understand what a mountain journey involves before making plans."
+          "heading": "Pengalaman pengguna",
+          "body": "Informasi rute, logistik, dan profil pemandu menjadi inti cerita. Antarmuka membantu pengunjung memahami kebutuhan perjalanan sebelum menyusun rencana."
         },
         {
-          "heading": "Design focus",
-          "body": "Combine the atmosphere of the outdoors with practical information. The goal is a clear reading experience across desktop and mobile, without hiding essential preparation details."
+          "heading": "Fokus desain",
+          "body": "Menggabungkan atmosfer alam dengan informasi praktis dalam pengalaman membaca yang jernih di desktop dan perangkat seluler."
         },
         {
-          "heading": "Preview note",
-          "body": "The live site prevents embedding in another website. This portfolio provides a captured screenshot and a direct link so the full experience remains accessible."
+          "heading": "Catatan pratinjau",
+          "body": "Situs ini membatasi penyematan di website lain. Portofolio menyediakan tangkapan layar dan tautan langsung agar pengalaman lengkap tetap dapat diakses."
         }
       ]
     }

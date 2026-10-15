@@ -7,8 +7,8 @@ type FooterCalendarProps = {
   calLink: string;
 };
 
-const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-const monthFormatter = new Intl.DateTimeFormat('en-US', {
+const weekdays = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
+const monthFormatter = new Intl.DateTimeFormat('id-ID', {
   month: 'long',
   year: 'numeric',
 });
@@ -56,28 +56,28 @@ export default function FooterCalendar({ calLink }: FooterCalendarProps) {
   const today = dateKey(new Date());
 
   return (
-    <div className="footer-calendar" aria-label="Book a time on Cal.com">
+    <div className="footer-calendar" aria-label="Kalender konsultasi Cal.com">
       <div className="footer-calendar-copy">
-        <p className="mono">Open calendar</p>
+        <p className="mono">Kalender konsultasi terbuka</p>
         <h2>
-          Find a <em>clear window.</em>
+          Pilih jadwal pertemuan yang <em>sesuai.</em>
         </h2>
         <p>
-          Choose a day that works. Every date opens the live Cal.com booking page,
-          where the available times are always current.
+          Pilih tanggal yang sesuai dengan agenda Anda. Setiap tanggal terhubung langsung
+          dengan halaman penjadwalan Cal.com yang menampilkan ketersediaan waktu terkini.
         </p>
         <a className="footer-calendar-link" href={calUrl} target="_blank" rel="noreferrer">
-          View all availability <ArrowUpRight size={15} />
+          Lihat Seluruh Jadwal Tersedia <ArrowUpRight size={15} />
         </a>
       </div>
 
       <div className="calendar-shell">
         <div className="calendar-head">
           <div>
-            <span className="calendar-kicker"><Clock3 size={13} /> Discovery call</span>
+            <span className="calendar-kicker"><Clock3 size={13} /> Sesi konsultasi awal</span>
             <strong>{monthFormatter.format(month)}</strong>
           </div>
-          <div className="calendar-nav" aria-label="Change month">
+          <div className="calendar-nav" aria-label="Ganti bulan">
             <button
               type="button"
               className="icon-button bordered"
@@ -97,7 +97,7 @@ export default function FooterCalendar({ calLink }: FooterCalendarProps) {
           </div>
         </div>
 
-        <div className="calendar-grid" role="grid" aria-label={monthFormatter.format(month)}>
+        <div className="calendar-grid" role="grid" aria-label={`Kalender ${monthFormatter.format(month)}`}>
           {weekdays.map((weekday) => (
             <span className="calendar-weekday" role="columnheader" key={weekday}>
               {weekday}
@@ -111,7 +111,7 @@ export default function FooterCalendar({ calLink }: FooterCalendarProps) {
                 href={`${calUrl}?date=${key}`}
                 target="_blank"
                 rel="noreferrer"
-                aria-label={`Book a call on ${date.toLocaleDateString('en-US', { dateStyle: 'long' })}`}
+                aria-label={`Jadwalkan konsultasi pada ${date.toLocaleDateString('id-ID', { dateStyle: 'long' })}`}
                 key={key}
               >
                 <span>{date.getDate()}</span>
@@ -120,7 +120,7 @@ export default function FooterCalendar({ calLink }: FooterCalendarProps) {
             );
           })}
         </div>
-        <p className="calendar-footnote">Times shown in your local timezone · opens Cal.com</p>
+        <p className="calendar-footnote">Waktu ditampilkan sesuai zona waktu lokal Anda · Terhubung ke Cal.com</p>
       </div>
     </div>
   );

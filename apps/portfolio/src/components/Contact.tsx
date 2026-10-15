@@ -27,16 +27,16 @@ import {
 
 const BookingEmbed = dynamic(() => import('./BookingEmbed'), {
   ssr: false,
-  loading: () => <p role="status">Loading calendar…</p>,
+  loading: () => <p role="status">Memuat kalender…</p>,
 });
 
 const channels = [
-  { name: 'GitHub', detail: 'Code & contributions', key: 'github', icon: Github },
-  { name: 'LinkedIn', detail: 'Professional network', key: 'linkedin', icon: Linkedin },
-  { name: 'Instagram', detail: 'Visual notes & work', key: 'instagram', icon: Instagram },
-  { name: 'WhatsApp', detail: '+62 851 7968 1576', key: 'whatsapp', icon: MessageCircle },
-  { name: 'Discord', detail: 'velorastudio.cpu', key: 'discord', icon: MessageCircle },
-  { name: 'Zoom', detail: 'Open meeting room', key: 'zoom', icon: Video },
+  { name: 'GitHub', detail: 'Repositori kode & kontribusi terbuka', key: 'github', icon: Github },
+  { name: 'LinkedIn', detail: 'Jejaring & profil profesional', key: 'linkedin', icon: Linkedin },
+  { name: 'Instagram', detail: 'Catatan visual & dokumentasi karya', key: 'instagram', icon: Instagram },
+  { name: 'WhatsApp', detail: '+62 851 7968 1576 (Pesan langsung)', key: 'whatsapp', icon: MessageCircle },
+  { name: 'Discord', detail: 'velorastudio.cpu (Komunitas & diskusi)', key: 'discord', icon: MessageCircle },
+  { name: 'Zoom', detail: 'Ruang pertemuan daring', key: 'zoom', icon: Video },
   { name: 'Email', detail: 'velorastudiodev@gmail.com', key: 'email', icon: Mail },
 ] as const;
 
@@ -47,12 +47,12 @@ export default function Contact() {
 
   const [copied, setCopied] = useState('');
   const [status, setStatus] = useState('');
-  const [topic, setTopic] = useState('A new website');
+  const [topic, setTopic] = useState('Pengembangan Situs Web Baru');
   const [embed, setEmbed] = useState(false);
 
-  const message = `Hi Ahmad, I'd like to discuss ${topic.toLowerCase()}. Could we arrange a discovery call?`;
+  const message = `Halo Ahmad, saya ingin membahas ${topic.toLowerCase()}. Apakah kita dapat mengatur sesi konsultasi?`;
   const emailUrl = email
-    ? `mailto:${email}?subject=${encodeURIComponent('Project enquiry — ' + topic)}&body=${encodeURIComponent(message)}`
+    ? `mailto:${email}?subject=${encodeURIComponent('Diskusi proyek — ' + topic)}&body=${encodeURIComponent(message)}`
     : undefined;
   const whatsappUrl = socials.whatsapp
     ? `${socials.whatsapp}?text=${encodeURIComponent(message)}`
@@ -62,10 +62,10 @@ export default function Contact() {
     try {
       await navigator.clipboard.writeText(value);
       setCopied(key);
-      setStatus(`${key} copied`);
+      setStatus(`${key} tersalin`);
       setTimeout(() => setCopied(''), 2200);
     } catch {
-      setStatus(`Copy manually: ${value}`);
+      setStatus(`Salin manual: ${value}`);
     }
   }
 
@@ -85,7 +85,7 @@ export default function Contact() {
     <section id="contact" className="section contact">
       <div className="section-label">
         <span className="mono">04</span>
-        <span>Open channel</span>
+        <span>Saluran konsultasi &amp; kolaborasi</span>
       </div>
 
       <div className="contact-layout">
@@ -98,23 +98,24 @@ export default function Contact() {
           animate={copyReveal.controls}
         >
           <h2>
-            Let's make the
+            Mari wujudkan proyek digital Anda berikutnya
             <br />
-            <em>next thing clear.</em>
+            <em>secara terstruktur.</em>
           </h2>
           <p>
-            Have a product to shape, a system to simplify, or a difficult
-            problem worth solving? Let's talk it through.
+            Memiliki produk digital yang ingin dibangun, sistem bisnis yang perlu
+            disederhanakan, atau tantangan teknis kompleks yang membutuhkan solusi?
+            Mari diskusikan kebutuhan Anda secara mendalam.
           </p>
           <div className="contact-actions">
             <a className="button" href={emailUrl}>
-              Start a conversation
+              Mulai Diskusi Proyek
               <ArrowUpRight size={16} />
             </a>
             {email && (
               <button className="text-link" onClick={() => copy('Email', email)}>
                 {copied === 'Email' ? <Check size={15} /> : <Copy size={15} />}
-                Copy email
+                Salin Alamat Email
               </button>
             )}
           </div>
@@ -122,7 +123,7 @@ export default function Contact() {
             <span className="signature-mark">aak.</span>
             <div>
               <strong>Ahmad Afataa Kusdianto</strong>
-              <span>Web · Design · Software</span>
+              <span>Pengembangan Web · Desain UI/UX · Perangkat Lunak</span>
             </div>
           </div>
         </motion.div>
@@ -137,43 +138,44 @@ export default function Contact() {
         >
           <div className="booking-card">
             <div className="booking-card-head">
-              <span className="mono">Let's find a time</span>
+              <span className="mono">Penjadwalan Diskusi</span>
               <CalendarDays size={20} />
             </div>
             <h3>
-              A conversation.
+              Langkah awal yang jelas
               <br />
-              <em>A clear starting point.</em>
+              <em>untuk proyek Anda.</em>
             </h3>
             <p>
-              Tell me what you have in mind. We'll arrange a time to discuss
-              the brief, scope, and next steps.
+              Sampaikan gambaran kebutuhan Anda. Kita akan mengatur jadwal diskusi
+              untuk membahas rincian kebutuhan, ruang lingkup pengerjaan, serta
+              tahapan implementasi berikutnya.
             </p>
             <label className="field-label" htmlFor="enquiry-topic">
-              What are you working on?
+              Jenis proyek apa yang ingin Anda bangun?
             </label>
             <select
               id="enquiry-topic"
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
             >
-              <option>A new website</option>
-              <option>An interface redesign</option>
-              <option>A custom software system</option>
-              <option>A technical consultation</option>
+              <option>Pengembangan Situs Web Baru</option>
+              <option>Sistem Manajemen Konten (CMS) / Dasbor Kustom</option>
+              <option>Perancangan Desain Antarmuka (UI/UX)</option>
+              <option>Konsultasi Arsitektur &amp; Teknis</option>
             </select>
             <div className="booking-links">
               {whatsappUrl && (
                 <a href={whatsappUrl} target="_blank" rel="noreferrer">
                   <MessageCircle size={16} />
-                  Discuss on WhatsApp
+                  Diskusikan Melalui WhatsApp
                   <ArrowUpRight size={14} />
                 </a>
               )}
               {emailUrl && (
                 <a href={emailUrl}>
                   <Mail size={16} />
-                  Send a brief
+                  Kirim Rincian Proyek
                   <ArrowRight size={14} />
                 </a>
               )}
@@ -184,14 +186,14 @@ export default function Contact() {
                   className="text-link calendar-toggle"
                   onClick={() => setEmbed(!embed)}
                 >
-                  {embed ? 'Hide' : 'Open'} booking calendar
+                  {embed ? 'Sembunyikan' : 'Buka'} Kalender Penjadwalan
                   <CalendarDays size={15} />
                 </button>
                 {embed && <BookingEmbed slug={profile.calComLink} />}
               </>
             ) : (
               <p className="booking-note">
-                Appointments arranged by message. Online calendar coming later.
+                Jadwal konsultasi diatur melalui pesan. Kalender daring akan segera tersedia.
               </p>
             )}
           </div>

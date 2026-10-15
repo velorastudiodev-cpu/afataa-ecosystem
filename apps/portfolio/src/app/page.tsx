@@ -25,7 +25,7 @@ export default function Home() {
       <div className="grain" aria-hidden="true" />
       <Navigation />
       <a className="skip-link" href="#main-content">
-        Skip to content
+        Lewati ke konten utama
       </a>
       <main id="main-content">
         <div id="top" />
@@ -46,15 +46,15 @@ export default function Home() {
 
             <motion.p className="hero-name" variants={heroChild}>
               Ahmad Afataa Kusdianto{' '}
-              <span>— developer &amp; designer</span>
+              <span>— Pengembang Web &amp; Desainer Sistem Digital</span>
             </motion.p>
 
             <motion.h1 variants={heroChild}>
-              Crafting high-precision <em>web experiences.</em>
+              Merancang Pengalaman Situs Web <em>Berpresisi Tinggi.</em>
             </motion.h1>
 
             <motion.p className="hero-subheading" variants={heroChild}>
-              And autonomous systems that put you in control.
+              Serta Sistem Perangkat Lunak Mandiri yang Memberikan Kendali Penuh di Tangan Anda.
             </motion.p>
 
             <motion.p className="hero-lede" variants={heroChild}>
@@ -69,10 +69,10 @@ export default function Home() {
 
             <motion.div className="hero-actions" variants={heroChild}>
               <a className="button" href="#work">
-                Explore masterpieces <span>↓</span>
+                Jelajahi Karya Unggulan <span>↓</span>
               </a>
               <a className="text-link" href="#contact">
-                Schedule a 1-on-1 <span>↗</span>
+                Jadwalkan Sesi Konsultasi <span>↗</span>
               </a>
             </motion.div>
 
@@ -96,10 +96,10 @@ export default function Home() {
         >
           <span className="mono">AAK / 001</span>
           <span>
-            Algorithmic logic <b>·</b> UI/UX craft <b>·</b> Full-stack
-            architecture
+            Logika Algoritmik <b>·</b> Desain Antarmuka (UI/UX) <b>·</b> Arsitektur
+            Sistem Menyeluruh
           </span>
-          <span className="mono">Scroll to explore ↓</span>
+          <span className="mono">Gulir untuk Menjelajahi ↓</span>
         </motion.div>
 
         <Pedigree />
@@ -114,9 +114,9 @@ export default function Home() {
           <a className="brand" href="#top">
             <AAKLogo size={30} /><span style={{marginLeft:6}}>AAK<span style={{color:'var(--gold)'}}>.</span></span>
           </a>
-          <span>© 2026 Ahmad Afataa Kusdianto</span>
+          <span>© 2026 Ahmad Afataa Kusdianto. Hak Cipta Dilindungi.</span>
           <span className="mono">
-            Built with intent / {content.masterpieces.length} live systems
+            Dirancang dengan Presisi Tinggi · {content.masterpieces.length} Sistem Produksi Aktif
           </span>
         </div>
       </footer>

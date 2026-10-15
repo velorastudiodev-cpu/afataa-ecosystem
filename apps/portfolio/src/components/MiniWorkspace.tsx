@@ -17,7 +17,7 @@ export default function MiniWorkspace() {
   const [path, setPath] = useState(new Set<number>());
   const [running, setRunning] = useState(false);
   const [algorithm, setAlgorithm] = useState<Algorithm>('dijkstra');
-  const [result, setResult] = useState('Ready when you are.');
+  const [result, setResult] = useState('Siap dijalankan kapan saja.');
   const [radius, setRadius] = useState(18);
   const [accent, setAccent] = useState('sky');
   const [copied, setCopied] = useState(false);
@@ -76,15 +76,15 @@ export default function MiniWorkspace() {
     const answer = findPath(cols, rows, start, end, walls, algorithm);
     const ms = performance.now() - t;
     let cursor = 0;
-    setResult('Searching…');
+    setResult('Sedang mencari…');
 
     const finish = () => {
       setPath(new Set(answer.path));
       setRunning(false);
       setResult(
         answer.path.length
-          ? `${answer.path.length - 1} steps · ${answer.visited.length} cells explored · ${ms.toFixed(3)} ms compute`
-          : `No route found · ${answer.visited.length} cells explored · ${ms.toFixed(3)} ms compute`
+          ? `${answer.path.length - 1} langkah · ${answer.visited.length} petak dijelajahi · ${ms.toFixed(3)} ms komputasi`
+          : `Rute tidak ditemukan · ${answer.visited.length} petak dijelajahi · ${ms.toFixed(3)} ms komputasi`
       );
     };
 
@@ -108,7 +108,7 @@ export default function MiniWorkspace() {
     stop();
     clearResult();
     setWalls(new Set(empty ? [] : startingWalls));
-    setResult('Ready when you are.');
+    setResult('Siap dijalankan kapan saja.');
   };
 
   const colors = {
@@ -142,19 +142,20 @@ export default function MiniWorkspace() {
     >
       <SectionTitle
         number="03"
-        label="Afataa's interactive lab"
-        title="See the thinking"
-        italic="in motion."
+        label="Laboratorium interaktif Afataa"
+        title="Simulasi logika algoritma & sistem desain"
+        italic="secara langsung."
       >
-        A small window into the work: finding a better path, then shaping the
-        details. Try both sides of the process.
+        Gambaran langsung mengenai cara kerja saya: menemukan jalur komputasi paling
+        efisien, lalu menyempurnakan setiap detail visualnya. Silakan uji kedua sisi
+        proses rekayasa tersebut di bawah ini.
       </SectionTitle>
 
       <div className="lab">
         <motion.div
           className="lab-tabs"
           role="tablist"
-          aria-label="Interactive lab"
+          aria-label="Laboratorium interaktif"
           ref={tabsReveal.ref as React.RefObject<HTMLDivElement>}
           variants={workspaceTabs}
           initial="hidden"
@@ -178,7 +179,7 @@ export default function MiniWorkspace() {
               }}
             >
               <span className="mono">0{i + 1}</span>
-              {i === 0 ? 'Pathfinding sandbox' : 'UI token customizer'}
+              {i === 0 ? 'Simulasi Pencarian Jalur' : 'Kustomisasi Token Antarmuka'}
             </button>
           ))}
         </motion.div>
@@ -186,18 +187,19 @@ export default function MiniWorkspace() {
         <div role="tabpanel" id="panel-path" aria-labelledby="tab-path" hidden={tab !== 'path'}>
           <div className="lab-panel">
             <div className="lab-copy">
-              <span className="mono">Algorithmic logic</span>
+              <span className="mono">Logika algoritmik</span>
               <h3>
-                A shorter path.
+                Jalur terpendek
                 <br />
-                <em>A clearer answer.</em>
+                <em>dengan komputasi paling efisien.</em>
               </h3>
               <p>
-                Place walls on the grid. Compare Dijkstra with A* as they find
-                a shortest route from start to finish.
+                Tambahkan rintangan dinding pada petak permainan, lalu bandingkan kinerja
+                algoritma Dijkstra dan A* dalam menemukan rute terpendek dari titik awal
+                menuju titik tujuan.
               </p>
               <label className="field-label" htmlFor="algorithm">
-                Search algorithm
+                Algoritma pencarian
               </label>
               <select
                 id="algorithm"
@@ -206,26 +208,26 @@ export default function MiniWorkspace() {
                 onChange={(e) => {
                   setAlgorithm(e.target.value as Algorithm);
                   clearResult();
-                  setResult('Ready when you are.');
+                  setResult('Siap dijalankan kapan saja.');
                 }}
               >
-                <option value="dijkstra">Dijkstra — explore by distance</option>
-                <option value="astar">A* — prioritize the destination</option>
+                <option value="dijkstra">Dijkstra — eksplorasi berdasarkan jarak terdekat</option>
+                <option value="astar">A* (A-Star) — pencarian terarah berbasis heuristik</option>
               </select>
               <div className="lab-controls">
                 <button className="button small" disabled={running} onClick={run}>
                   <Play size={14} />
-                  {running ? 'Searching…' : `Run ${algorithm === 'astar' ? 'A*' : 'Dijkstra'}`}
+                  {running ? 'Sedang mencari…' : `Jalankan Algoritma ${algorithm === 'astar' ? 'A*' : 'Dijkstra'}`}
                 </button>
                 <button
                   className="icon-button bordered"
                   onClick={() => reset()}
-                  aria-label="Reset grid"
+                  aria-label="Atur ulang petak"
                 >
                   <RotateCcw size={17} />
                 </button>
                 <button className="text-link" onClick={() => reset(true)}>
-                  Clear walls
+                  Bersihkan Rintangan
                 </button>
               </div>
               <p className="runtime mono" aria-live="polite">
@@ -235,7 +237,7 @@ export default function MiniWorkspace() {
             <div className="grid-wrap">
               <div className="grid-caption">
                 <MousePointer2 size={13} />
-                <span>Click or tap to add a wall</span>
+                <span>Klik atau ketuk petak untuk menambahkan rintangan</span>
                 <span>16 × 8</span>
               </div>
               <div
@@ -262,18 +264,18 @@ export default function MiniWorkspace() {
                     disabled={running || i === start || i === end}
                     aria-label={
                       i === start
-                        ? 'Start'
+                        ? 'Titik Awal'
                         : i === end
-                        ? 'Destination'
-                        : `Row ${Math.floor(i / cols) + 1}, column ${i % cols + 1}${
-                            walls.has(i) ? ', wall' : ''
+                        ? 'Titik Tujuan'
+                        : `Baris ${Math.floor(i / cols) + 1}, kolom ${i % cols + 1}${
+                            walls.has(i) ? ', rintangan' : ''
                           }`
                     }
                     aria-pressed={walls.has(i)}
                     style={{ '--cell-order': (i % cols) + Math.floor(i / cols) * 2 } as React.CSSProperties}
                     onClick={() => {
                       clearResult();
-                      setResult('Ready when you are.');
+                      setResult('Siap dijalankan kapan saja.');
                       setWalls((w) => {
                         const n = new Set(w);
                         if (n.has(i)) n.delete(i);
@@ -289,19 +291,19 @@ export default function MiniWorkspace() {
               <div className="grid-legend">
                 <span>
                   <i className="start" />
-                  Start
+                  Titik Awal
                 </span>
                 <span>
                   <i className="end" />
-                  Destination
+                  Titik Tujuan
                 </span>
                 <span>
                   <i className="wall" />
-                  Wall
+                  Rintangan Dinding
                 </span>
                 <span>
                   <i className="path" />
-                  Shortest path
+                  Jalur Terpendek
                 </span>
               </div>
             </div>
@@ -311,18 +313,18 @@ export default function MiniWorkspace() {
         <div role="tabpanel" id="panel-tokens" aria-labelledby="tab-tokens" hidden={tab !== 'tokens'}>
           <div className="lab-panel">
             <div className="lab-copy">
-              <span className="mono">Design systems</span>
+              <span className="mono">Sistem desain antarmuka</span>
               <h3>
-                Small changes.
+                Penyesuaian presisi
                 <br />
-                <em>A different feel.</em>
+                <em>untuk karakter visual yang berbeda.</em>
               </h3>
               <p>
-                Try the same component in three tones. Change the corners, then
-                take the CSS tokens with you.
+                Uji tampilan komponen yang sama dalam tiga nuansa warna aksen, sesuaikan
+                lengkungan sudutnya, lalu salin konfigurasi token CSS secara langsung.
               </p>
               <label className="range-label" htmlFor="radius">
-                Corner radius<output>{radius}px</output>
+                Radius sudut<output>{radius}px</output>
               </label>
               <input
                 id="radius"
@@ -333,7 +335,7 @@ export default function MiniWorkspace() {
                 onChange={(e) => setRadius(Number(e.target.value))}
               />
               <fieldset className="accent-options">
-                <legend>Accent tone</legend>
+                <legend>Warna aksen utama</legend>
                 {['sky', 'snow', 'gold'].map((t) => (
                   <label key={t} className={accent === t ? 'active' : ''}>
                     <input
@@ -344,7 +346,7 @@ export default function MiniWorkspace() {
                       onChange={() => setAccent(t)}
                     />
                     <span className={`color-dot ${t}`} />
-                    {t === 'sky' ? 'Sky blue' : t === 'snow' ? 'Snow blue' : 'Champagne'}
+                    {t === 'sky' ? 'Biru Langit' : t === 'snow' ? 'Biru Salju' : 'Emas Sampanye'}
                   </label>
                 ))}
               </fieldset>
@@ -358,32 +360,32 @@ export default function MiniWorkspace() {
               }}
             >
               <div className="card-top">
-                <span className="mono">Your live component</span>
+                <span className="mono">Pratinjau komponen langsung</span>
                 <span className="token-symbol" style={{ color: tone.accent }}>
                   ✦
                 </span>
               </div>
               <h4>
-                Precision,
+                Presisi di setiap detail
                 <br />
-                <em style={{ color: tone.accent }}>in the details.</em>
+                <em style={{ color: tone.accent }}>desain.</em>
               </h4>
-              <p>One system. A thousand considered decisions.</p>
+              <p>Satu sistem terpadu melalui ribuan keputusan desain yang terukur.</p>
               <button
                 className="button small"
                 style={{ background: tone.accent }}
                 onClick={copy}
               >
                 {copied ? <Check size={15} /> : <Copy size={15} />}{' '}
-                {copied ? 'Tokens copied' : 'Copy CSS tokens'}
+                {copied ? 'Token tersalin' : 'Salin Token CSS'}
               </button>
               {copyError && (
                 <p role="status">
-                  Copy manually: radius {radius}px; accent {tone.accent}; surface {tone.surface}.
+                  Salin manual: radius {radius}px; aksen {tone.accent}; permukaan {tone.surface}.
                 </p>
               )}
               <div className="token-spec mono">
-                Radius {radius}px <span>Accent {tone.accent}</span>
+                Radius {radius}px <span>Aksen {tone.accent}</span>
               </div>
             </div>
           </div>

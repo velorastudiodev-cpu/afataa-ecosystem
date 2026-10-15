@@ -33,6 +33,11 @@ export default function Masterpieces({ projects }: { projects: Masterpiece[] }) 
   const region = useRef<HTMLDivElement>(null);
   const touch = useRef<number | null>(null);
   const project = projects[index];
+  const categoryLabel = project.category === 'FULLSTACK_ECOSYSTEM'
+    ? 'Ekosistem full-stack'
+    : project.category === 'AUTONOMOUS_CMS'
+    ? 'Sistem manajemen konten (CMS)'
+    : 'Platform web & informasi';
 
   // Scroll reveal for the whole section
   const sectionReveal = useScrollReveal({ threshold: 0.08 });
@@ -68,16 +73,16 @@ export default function Masterpieces({ projects }: { projects: Masterpiece[] }) 
   const actions = (p: Masterpiece, compact = false) => (
     <div className={`project-actions ${compact ? 'compact' : ''}`}>
       <a href={p.liveUrl} target="_blank" rel="noreferrer" className="text-link">
-        {p.id === 'cms' ? 'Launch dashboard' : 'Launch live site'}
+        {p.id === 'cms' ? 'Buka Dasbor Admin' : 'Buka Situs Langsung'}
         <ArrowUpRight size={15} />
       </a>
       <button className="text-link" onClick={() => setDialog({ project: p, mode: 'preview' })}>
         <Scan size={15} />
-        Interactive preview
+        Pratinjau Interaktif
       </button>
       <button className="text-link" onClick={() => setDialog({ project: p, mode: 'report' })}>
         <FileText size={15} />
-        Technical report
+        Laporan Arsitektur Teknis
       </button>
     </div>
   );
@@ -93,19 +98,20 @@ export default function Masterpieces({ projects }: { projects: Masterpiece[] }) 
     >
       <SectionTitle
         number="02"
-        label="Selected masterpieces"
-        title="Work that works"
-        italic="harder."
+        label="Portofolio karya unggulan"
+        title="Solusi digital nyata yang bekerja lebih"
+        italic="efektif."
       >
-        A storefront. Its control room. An expedition platform. Three different
-        experiences, each built around the people who use it.
+        Etalase digital bisnis, pusat kendali manajemen konten, dan platform informasi
+        ekspedisi. Tiga produk digital berbeda yang masing-masing dirancang mengikuti
+        kebutuhan penggunanya.
       </SectionTitle>
 
       <div
         className="showcase"
         ref={region}
         aria-roledescription="carousel"
-        aria-label="Featured projects"
+        aria-label="Karya unggulan"
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         onFocusCapture={() => setFocused(true)}
@@ -119,7 +125,7 @@ export default function Masterpieces({ projects }: { projects: Masterpiece[] }) 
         }}
       >
         <div className="showcase-rail">
-          <div className="project-select" role="group" aria-label="Choose featured project">
+          <div className="project-select" role="group" aria-label="Pilih karya unggulan">
             {projects.map((p, i) => (
               <button
                 key={p.id}
@@ -129,7 +135,7 @@ export default function Masterpieces({ projects }: { projects: Masterpiece[] }) 
               >
                 <span className="project-index">0{i + 1}</span>
                 <span className="project-name project-name-desktop">
-                  {['Storefront', 'Customizer', 'Expedition'][i]}
+                  {['Etalase Digital', 'Dasbor Manajemen', 'Platform Ekspedisi'][i]}
                 </span>
                 <span className="project-name project-name-mobile">
                   {p.id === 'cms' ? 'Ikbar CMS' : p.id === 'dzikri' ? 'Dzikri Mount' : 'Ikbar Barbershop'}
@@ -137,10 +143,10 @@ export default function Masterpieces({ projects }: { projects: Masterpiece[] }) 
               </button>
             ))}
           </div>
-          <span className="showcase-hint">Swipe a preview · tap a project</span>
+          <span className="showcase-hint">Geser pratinjau · pilih proyek</span>
           <button
             className="icon-button"
-            aria-label={paused ? 'Start automatic rotation' : 'Pause automatic rotation'}
+            aria-label={paused ? 'Mulai rotasi otomatis' : 'Jeda rotasi otomatis'}
             aria-pressed={!paused}
             onClick={() => setPaused(!paused)}
           >
@@ -159,26 +165,26 @@ export default function Masterpieces({ projects }: { projects: Masterpiece[] }) 
               transition={{ type: 'spring', stiffness: 220, damping: 26 }}
             >
               <span className="mono project-category">
-                {project.category.replaceAll('_', ' ')}
+                {categoryLabel}
               </span>
               <h3>
                 {project.id === 'ikbar' ? (
                   <>
-                    Ikbar
+                    Ikbar Barbershop
                     <br />
-                    <em>Barbershop</em>
+                    <em>Platform Web Layanan Grooming Modern</em>
                   </>
                 ) : project.id === 'cms' ? (
                   <>
-                    Ikbar
+                    Ikbar Autonomous CMS
                     <br />
-                    <em>Autonomous CMS</em>
+                    <em>Dasbor Kendali Situs Web Mandiri</em>
                   </>
                 ) : (
                   <>
-                    Dzikri
+                    Dzikri Mount Guide
                     <br />
-                    <em>Mount Guide</em>
+                    <em>Platform Panduan Ekspedisi &amp; Pendakian Gunung</em>
                   </>
                 )}
               </h3>
@@ -186,7 +192,7 @@ export default function Masterpieces({ projects }: { projects: Masterpiece[] }) 
               {project.id !== 'dzikri' && (
                 <div className="ecosystem-note">
                   <span className="connection-line" />
-                  One brand. Two connected experiences.
+                  Satu merek bisnis dalam dua ekosistem sistem yang saling terhubung.
                 </div>
               )}
               {actions(project)}
@@ -221,7 +227,7 @@ export default function Masterpieces({ projects }: { projects: Masterpiece[] }) 
             </div>
             <button
               className="screen-image-button"
-              aria-label={`Open ${project.title} interactive preview`}
+              aria-label={`Buka pratinjau interaktif ${project.title}`}
               onClick={() => setDialog({ project, mode: 'preview' })}
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -240,21 +246,21 @@ export default function Masterpieces({ projects }: { projects: Masterpiece[] }) 
               </AnimatePresence>
               <span className="screen-hover">
                 <Scan size={16} />
-                Explore the preview
+                Jelajahi Pratinjau
               </span>
             </button>
             <div className="screen-foot">
               <span className="mono">
                 {project.id === 'cms'
-                  ? 'Owner sign-in required'
-                  : 'Captured from the live site'}
+                  ? 'Memerlukan autentikasi pemilik sistem'
+                  : 'Tampilan langsung dari situs produksi'}
               </span>
               <div>
-                <button className="icon-button" aria-label="Previous project" onClick={() => choose(index - 1)}>
+                <button className="icon-button" aria-label="Proyek sebelumnya" onClick={() => choose(index - 1)}>
                   <ArrowLeft size={16} />
                 </button>
                 <span className="mono">0{index + 1} / 03</span>
-                <button className="icon-button" aria-label="Next project" onClick={() => choose(index + 1)}>
+                <button className="icon-button" aria-label="Proyek berikutnya" onClick={() => choose(index + 1)}>
                   <ArrowRight size={16} />
                 </button>
               </div>
@@ -276,7 +282,7 @@ export default function Masterpieces({ projects }: { projects: Masterpiece[] }) 
           >
             <div className="card-top">
               <span className="mono">
-                0{i + 2} / {i === 0 ? 'Customizer' : 'Platform'}
+                0{i + 2} / {i === 0 ? 'Sistem Manajemen Konten (CMS)' : 'Platform Web & Informasi'}
               </span>
               <ArrowUpRight size={18} />
             </div>
