@@ -122,7 +122,7 @@ section[id],div[id=top]{scroll-margin-top:105px}.skip-link{position:fixed;top:12
   .calendar-grid{width:100%;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
   .calendar-weekday{font-size:8px;padding:4px 0}
   .calendar-day{display:grid;visibility:visible;min-width:0;min-height:42px;color:var(--deep)!important;font-size:12px;opacity:1}
-  .calendar-day span{display:block;visibility:visible;color:inherit;line-height:1}
+  .calendar-day span{display:block!important;visibility:visible!important;color:var(--deep)!important;opacity:1!important;line-height:1;position:relative;z-index:1}
   .calendar-day.is-outside{opacity:.42}
   .calendar-day.is-today{color:var(--gold-deep)!important}
   .calendar-footnote{font-size:8px;line-height:1.5}
