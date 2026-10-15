@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 
-const origin = 'https://afataa-portfolio.privgpwow.chatgpt.site';
+const origin = 'https://afataa-ecosystem.vercel.app';
 const title = 'Ahmad Afataa Kusdianto — Pengembang Web, Desainer UI/UX & Pengembang Perangkat Lunak';
 const description = 'Portofolio resmi Ahmad Afataa Kusdianto, peraih Medali Emas OSN Informatika serta pengembang web dan perangkat lunak spesialis situs web modern, sistem CMS mandiri, dan desain antarmuka presisi tinggi.';
 
