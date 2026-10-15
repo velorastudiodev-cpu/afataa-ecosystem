@@ -34,9 +34,9 @@ const channels = [
   { name: 'GitHub', detail: 'Code & contributions', key: 'github', icon: Github },
   { name: 'LinkedIn', detail: 'Professional network', key: 'linkedin', icon: Linkedin },
   { name: 'Instagram', detail: 'Visual notes & work', key: 'instagram', icon: Instagram },
-  { name: 'WhatsApp', detail: 'Start a conversation', key: 'whatsapp', icon: MessageCircle },
-  { name: 'Discord', detail: 'Not shared yet', key: 'discord', icon: MessageCircle },
-  { name: 'Zoom', detail: 'By arrangement', key: 'zoom', icon: Video },
+  { name: 'WhatsApp', detail: '+62 851 7968 1576', key: 'whatsapp', icon: MessageCircle },
+  { name: 'Discord', detail: 'velorastudio.cpu', key: 'discord', icon: MessageCircle },
+  { name: 'Zoom', detail: 'Open meeting room', key: 'zoom', icon: Video },
   { name: 'Email', detail: 'velorastudiodev@gmail.com', key: 'email', icon: Mail },
 ] as const;
 
@@ -238,7 +238,7 @@ export default function Contact() {
                       className="icon-button copy-channel"
                       aria-label={`Copy ${name}`}
                       onClick={() =>
-                        copy(name, key === 'whatsapp' ? '+6685179681576' : value)
+                        copy(name, key === 'whatsapp' ? '+6285179681576' : value)
                       }
                     >
                       {copied === name ? <Check size={14} /> : <Copy size={14} />}

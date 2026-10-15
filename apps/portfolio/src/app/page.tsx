@@ -12,6 +12,7 @@ import Pedigree from '@/components/Pedigree';
 import Masterpieces from '@/components/Masterpieces';
 import MiniWorkspace from '@/components/MiniWorkspace';
 import Contact from '@/components/Contact';
+import FooterCalendar from '@/components/FooterCalendar';
 import AAKLogo from '@/components/AAKLogo';
 import { content } from '@/lib/content';
 
@@ -108,13 +109,16 @@ export default function Home() {
       </main>
 
       <footer className="footer">
-        <a className="brand" href="#top">
-          <AAKLogo size={30} /><span style={{marginLeft:6}}>AAK<span style={{color:'var(--gold)'}}>.</span></span>
-        </a>
-        <span>© 2026 Ahmad Afataa Kusdianto</span>
-        <span className="mono">
-          Built with intent / {content.masterpieces.length} live systems
-        </span>
+        <FooterCalendar calLink={content.profile.calComLink} />
+        <div className="footer-bottom">
+          <a className="brand" href="#top">
+            <AAKLogo size={30} /><span style={{marginLeft:6}}>AAK<span style={{color:'var(--gold)'}}>.</span></span>
+          </a>
+          <span>© 2026 Ahmad Afataa Kusdianto</span>
+          <span className="mono">
+            Built with intent / {content.masterpieces.length} live systems
+          </span>
+        </div>
       </footer>
     </>
   );
