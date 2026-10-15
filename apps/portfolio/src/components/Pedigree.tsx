@@ -63,7 +63,7 @@ export default function Pedigree() {
           animate={achievementReveal.controls}
         >
           <div className="card-top">
-            <span className="mono">COMPETITIVE INFORMATICS</span>
+            <span className="mono">Competitive informatics</span>
             <span className="year">2026</span>
           </div>
           <div className="achievement-main">
@@ -111,7 +111,7 @@ export default function Pedigree() {
           initial="hidden"
           animate={pillarsReveal.controls}
         >
-          <span className="mono">THREE WAYS I BUILD</span>
+          <span className="mono">Three ways I build</span>
           {[
             {
               icon: PenTool,
@@ -151,7 +151,7 @@ export default function Pedigree() {
           animate={toolboxReveal.controls}
         >
           <div className="toolbox-heading">
-            <span className="mono">THE WORKBENCH</span>
+            <span className="mono">The workbench</span>
             <h3>
               Different tools.
               <br />

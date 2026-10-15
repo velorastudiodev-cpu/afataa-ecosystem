@@ -137,7 +137,7 @@ export default function Contact() {
         >
           <div className="booking-card">
             <div className="booking-card-head">
-              <span className="mono">LET'S FIND A TIME</span>
+              <span className="mono">Let's find a time</span>
               <CalendarDays size={20} />
             </div>
             <h3>

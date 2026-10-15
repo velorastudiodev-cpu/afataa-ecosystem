@@ -95,10 +95,10 @@ export default function Home() {
         >
           <span className="mono">AAK / 001</span>
           <span>
-            ALGORITHMIC LOGIC <b>·</b> UI/UX CRAFT <b>·</b> FULL-STACK
-            ARCHITECTURE
+            Algorithmic logic <b>·</b> UI/UX craft <b>·</b> Full-stack
+            architecture
           </span>
-          <span className="mono">SCROLL TO EXPLORE ↓</span>
+          <span className="mono">Scroll to explore ↓</span>
         </motion.div>
 
         <Pedigree />
@@ -113,7 +113,7 @@ export default function Home() {
         </a>
         <span>© 2026 Ahmad Afataa Kusdianto</span>
         <span className="mono">
-          BUILT WITH INTENT / {content.masterpieces.length} LIVE SYSTEMS
+          Built with intent / {content.masterpieces.length} live systems
         </span>
       </footer>
     </>

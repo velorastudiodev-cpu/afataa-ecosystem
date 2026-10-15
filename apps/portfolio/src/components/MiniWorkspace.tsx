@@ -186,7 +186,7 @@ export default function MiniWorkspace() {
         <div role="tabpanel" id="panel-path" aria-labelledby="tab-path" hidden={tab !== 'path'}>
           <div className="lab-panel">
             <div className="lab-copy">
-              <span className="mono">ALGORITHMIC LOGIC</span>
+              <span className="mono">Algorithmic logic</span>
               <h3>
                 A shorter path.
                 <br />
@@ -235,7 +235,7 @@ export default function MiniWorkspace() {
             <div className="grid-wrap">
               <div className="grid-caption">
                 <MousePointer2 size={13} />
-                <span>CLICK OR TAP TO ADD A WALL</span>
+                <span>Click or tap to add a wall</span>
                 <span>16 × 8</span>
               </div>
               <div
@@ -311,7 +311,7 @@ export default function MiniWorkspace() {
         <div role="tabpanel" id="panel-tokens" aria-labelledby="tab-tokens" hidden={tab !== 'tokens'}>
           <div className="lab-panel">
             <div className="lab-copy">
-              <span className="mono">DESIGN SYSTEMS</span>
+              <span className="mono">Design systems</span>
               <h3>
                 Small changes.
                 <br />
@@ -358,7 +358,7 @@ export default function MiniWorkspace() {
               }}
             >
               <div className="card-top">
-                <span className="mono">YOUR LIVE COMPONENT</span>
+                <span className="mono">Your live component</span>
                 <span className="token-symbol" style={{ color: tone.accent }}>
                   ✦
                 </span>
@@ -383,7 +383,7 @@ export default function MiniWorkspace() {
                 </p>
               )}
               <div className="token-spec mono">
-                RADIUS {radius}px <span>ACCENT {tone.accent}</span>
+                Radius {radius}px <span>Accent {tone.accent}</span>
               </div>
             </div>
           </div>

@@ -235,8 +235,8 @@ export default function Masterpieces({ projects }: { projects: Masterpiece[] }) 
             <div className="screen-foot">
               <span className="mono">
                 {project.id === 'cms'
-                  ? 'OWNER SIGN-IN REQUIRED'
-                  : 'CAPTURED FROM THE LIVE SITE'}
+                  ? 'Owner sign-in required'
+                  : 'Captured from the live site'}
               </span>
               <div>
                 <button className="icon-button" aria-label="Previous project" onClick={() => choose(index - 1)}>
@@ -265,7 +265,7 @@ export default function Masterpieces({ projects }: { projects: Masterpiece[] }) 
           >
             <div className="card-top">
               <span className="mono">
-                0{i + 2} / {i === 0 ? 'CMS' : 'PLATFORM'}
+                0{i + 2} / {i === 0 ? 'Customizer' : 'Platform'}
               </span>
               <ArrowUpRight size={18} />
             </div>
