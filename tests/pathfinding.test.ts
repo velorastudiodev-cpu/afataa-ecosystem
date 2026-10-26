@@ -2,3 +2,4 @@ import test from 'node:test';import assert from 'node:assert/strict';import {fin
 test('Dijkstra finds a shortest path around walls',()=>{const walls=new Set([1,2,3,8]);const r=findPath(4,3,0,11,walls,'dijkstra');assert.deepEqual(r.path[0],0);assert.deepEqual(r.path.at(-1),11);assert.equal(r.path.some(n=>walls.has(n)),false);assert.equal(r.path.length-1,5);});
 test('A* returns an optimal route and an explored set',()=>{const r=findPath(5,5,0,24,new Set([6,7,8,13,18]),'astar');assert.equal(r.path.at(-1),24);assert.ok(r.visited.length>=r.path.length);});
 test('blocked destination returns no route',()=>{const r=findPath(3,3,0,8,new Set([8]),'dijkstra');assert.deepEqual(r.path,[]);});
+test('A* explores fewer cells than Dijkstra on an open grid with the same path length',()=>{const d=findPath(16,9,65,78,new Set(),'dijkstra'),a=findPath(16,9,65,78,new Set(),'astar');assert.equal(a.path.length,d.path.length);assert.ok(a.visited.length<d.visited.length/2);});

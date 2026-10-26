@@ -8,7 +8,9 @@ export function findPath(cols:number,rows:number,start:number,end:number,walls:R
  const heuristic=(n:number)=>algorithm==='astar'?Math.abs(n%cols-end%cols)+Math.abs(Math.floor(n/cols)-Math.floor(end/cols)):0;
  while(open.size){
   let current=-1,score=Infinity;
-  for(const n of open){const f=distances[n]+heuristic(n);if(f<score){current=n;score=f;}}
+  // Tie-break equal f on the smaller heuristic so A* keeps heading for the goal instead of flooding plateaus.
+  let bestH=Infinity;
+  for(const n of open){const h=heuristic(n),f=distances[n]+h;if(f<score||(f===score&&h<bestH)){current=n;score=f;bestH=h;}}
   open.delete(current);closed.add(current);visited.push(current);
   if(current===end){const path:number[]=[];for(let n=end;n!==-1;n=parents[n])path.unshift(n);return {visited,path};}
   const x=current%cols,y=Math.floor(current/cols);

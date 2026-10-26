@@ -4,6 +4,7 @@ import Reveal from '@/components/Reveal';
 import Masterpieces from '@/components/Masterpieces';
 import Pedigree from '@/components/Pedigree';
 import Process from '@/components/Process';
+import Lab from '@/components/Lab';
 import { content } from '@/lib/content';
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         <Masterpieces projects={content.masterpieces} />
         <Pedigree />
         <Process />
+        <Lab />
       </main>
       <Reveal />
     </>

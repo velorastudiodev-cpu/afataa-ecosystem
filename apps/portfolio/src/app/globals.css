@@ -195,6 +195,33 @@ dialog h2 { margin: 0; font-size: clamp(26px, 3.4vw, 40px); font-weight: 600; li
 .steps h3 { margin: 10px 0 10px; font-size: 24px; font-weight: 600; letter-spacing: -.02em; }
 .steps p { margin: 0; color: var(--muted); font-size: 15px; }
 
+/* ── Lab ── */
+.lab-panel { padding: clamp(16px, 3vw, 32px); border: 1px solid var(--line-2); border-radius: 24px; background: linear-gradient(180deg, var(--surface), var(--bg-2)); }
+.lab-toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+.lanes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 28px); }
+.lane { padding: 16px; border: 1px solid var(--line); border-radius: 16px; background: rgba(7, 11, 20, .5); transition: border-color .4s, box-shadow .4s; }
+.lane.is-winner { border-color: rgba(212, 175, 106, .55); box-shadow: 0 0 0 1px rgba(212, 175, 106, .2), 0 20px 60px -20px rgba(212, 175, 106, .25); }
+.lane-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.lane-head h3 { margin: 0; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 30px; line-height: 1; }
+.lane.is-winner .lane-head h3 { color: var(--gold); }
+.lane-head .mono { color: var(--muted); font-variant-numeric: tabular-nums; }
+.maze { display: grid; grid-template-columns: repeat(var(--cols), 1fr); gap: 3px; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.cell { aspect-ratio: 1; padding: 0; border: 0; border-radius: 4px; background: rgba(160, 190, 230, .07); transition: background .25s, transform .25s var(--ease); }
+button.cell:not(:disabled):hover { background: rgba(160, 190, 230, .2); }
+button.cell:disabled { cursor: default; }
+.cell.wall { background: #c9d6e8; transform: scale(.92); }
+.cell.visited { background: rgba(59, 130, 196, .45); animation: visit .5s var(--ease); }
+.cell.path { background: var(--gold); box-shadow: 0 0 10px rgba(212, 175, 106, .5); }
+.cell.start { background: var(--sky); box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--sky); }
+.cell.end { background: var(--gold); box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--gold); }
+@keyframes visit { from { transform: scale(.4); background: var(--sky); } }
+.lab-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; margin-top: 20px; }
+.lab-summary { margin: 0; color: var(--text); font-size: 15px; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 0; padding: 0; list-style: none; color: var(--muted); font-size: 11px; }
+.legend li { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 10px; height: 10px; border-radius: 3px; }
+.legend .start { background: var(--sky); } .legend .end, .legend .path { background: var(--gold); } .legend .wall { background: #c9d6e8; } .legend .visited { background: rgba(59, 130, 196, .6); }
+
 /* ── Motion: CSS-first entrance + scroll reveal (data-reveal, toggled by page script) ── */
 .anim { animation: rise .9s var(--ease) both; animation-delay: calc(var(--d, 0) * 90ms + 100ms); }
 @keyframes rise { from { opacity: 0; transform: translateY(24px); filter: blur(6px); } }
@@ -218,6 +245,7 @@ dialog h2 { margin: 0; font-size: clamp(26px, 3.4vw, 40px); font-weight: 600; li
   .js .steps:not(.in)::before { transform: scaleY(0); }
   .steps li { padding-top: 0; }
   .step-node { left: -36px; }
+  .lanes { grid-template-columns: minmax(0, 1fr); }
   .case-phone, .case:nth-child(even) .case-phone { right: 0; left: auto; width: 28%; max-width: 150px; border-width: 4px; border-radius: 16px; }
 }
 @media (max-width: 960px) {
