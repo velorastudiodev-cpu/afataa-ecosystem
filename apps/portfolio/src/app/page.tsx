@@ -2,6 +2,8 @@ import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import Reveal from '@/components/Reveal';
 import Masterpieces from '@/components/Masterpieces';
+import Pedigree from '@/components/Pedigree';
+import Process from '@/components/Process';
 import { content } from '@/lib/content';
 
 export default function Home() {
@@ -14,6 +16,8 @@ export default function Home() {
         <div id="top" />
         <Hero />
         <Masterpieces projects={content.masterpieces} />
+        <Pedigree />
+        <Process />
       </main>
       <Reveal />
     </>

@@ -99,6 +99,7 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spa
 .section-kicker span { color: var(--gold); }
 .section-head h2 { margin: 0; font-size: clamp(36px, 5.2vw, 72px); font-weight: 600; line-height: 1; letter-spacing: -.04em; text-wrap: balance; }
 .section-head h2 em { color: var(--sky); }
+.section-head:not(:has(.section-intro)) h2 { grid-column: 1 / -1; max-width: 22ch; }
 .section-intro { margin: 0; color: var(--muted); font-size: 17px; text-wrap: pretty; }
 
 /* ── Work / case studies ── */
@@ -153,6 +154,47 @@ dialog h2 { margin: 0; font-size: clamp(26px, 3.4vw, 40px); font-weight: 600; li
 .preview-note { margin: 16px 0 12px; color: var(--muted); font-size: 14px; }
 .preview-note a { color: var(--sky); }
 
+/* ── Pedigree ── */
+.medals { display: grid; grid-template-columns: 1.15fr 1fr; gap: 20px; }
+.medal { position: relative; overflow: hidden; padding: clamp(28px, 4vw, 44px); border: 1px solid var(--line-2); border-radius: 24px; background: linear-gradient(160deg, var(--surface-2), var(--surface) 60%); }
+.medal.is-gold { border-color: rgba(212, 175, 106, .4); background: radial-gradient(500px 300px at 100% 0%, rgba(212, 175, 106, .16), transparent 70%), linear-gradient(160deg, #17192a, var(--surface) 60%); }
+.medal-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px; color: var(--muted); }
+.medal-emblem { display: grid; place-items: center; width: 60px; height: 60px; border-radius: 50%; border: 1px solid var(--line-2); color: var(--sky); box-shadow: 0 0 0 6px rgba(127, 178, 229, .05); }
+.is-gold .medal-emblem { color: var(--gold); border-color: rgba(212, 175, 106, .5); box-shadow: 0 0 0 6px rgba(212, 175, 106, .07), 0 0 40px rgba(212, 175, 106, .2); }
+.medal-rank { margin: 0; font-family: var(--serif); font-style: italic; font-size: clamp(32px, 3.6vw, 48px); line-height: 1.05; color: var(--sky); }
+.is-gold .medal-rank { color: var(--gold); }
+.medal h3 { margin: 8px 0 12px; font-size: 18px; font-weight: 600; }
+.medal p { margin: 0; color: var(--muted); }
+.medal .medal-chip { display: inline-block; margin-top: 20px; padding: 6px 12px; border-radius: 999px; background: rgba(212, 175, 106, .1); color: var(--gold-light); font-size: 11px; }
+.pillars { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: clamp(56px, 8vw, 96px) 0 0; padding: 0; border-top: 1px solid var(--line); }
+.pillars li { padding: 32px 32px 0 0; }
+.pillars li + li { padding-left: 32px; border-left: 1px solid var(--line); }
+.pillars .mono { color: var(--gold); }
+.pillars h3 { margin: 14px 0 10px; font-size: 20px; font-weight: 600; letter-spacing: -.01em; }
+.pillars p { margin: 0; color: var(--muted); font-size: 15px; }
+.marquee { display: flex; overflow: hidden; margin-top: clamp(72px, 10vw, 120px); padding-block: 22px; border-block: 1px solid var(--line); -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.marquee ul { display: flex; flex-shrink: 0; gap: 0; margin: 0; padding: 0; list-style: none; animation: marquee 40s linear infinite; }
+.marquee:hover ul { animation-play-state: paused; }
+.marquee li { display: flex; align-items: center; gap: 40px; padding-right: 40px; font-size: clamp(22px, 2.6vw, 34px); font-weight: 500; letter-spacing: -.02em; color: var(--muted); white-space: nowrap; }
+.marquee li::after { content: '✦'; font-size: 14px; color: var(--gold); }
+@keyframes marquee { to { transform: translateX(-100%); } }
+
+/* ── Process ── */
+.process { background: var(--bg-2); }
+.steps { position: relative; list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin: 0; padding: 0; }
+.steps::before { content: ''; position: absolute; top: 7px; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--sky), var(--gold)); transform-origin: left; transition: transform 1.6s var(--ease) .2s; }
+.js .steps:not(.in)::before { transform: scaleX(0); }
+.steps li { position: relative; padding-top: 40px; transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: calc(var(--d) * 180ms + 300ms); }
+.js .steps:not(.in) li { opacity: 0; transform: translateY(16px); }
+.js .steps[data-reveal]:not(.in) { opacity: 1; transform: none; }
+.step-node { position: absolute; top: 0; left: 0; width: 15px; height: 15px; border-radius: 50%; border: 1px solid var(--sky); background: var(--bg-2); }
+.step-node::after { content: ''; position: absolute; inset: 3px; border-radius: 50%; background: var(--sky); }
+.steps li:last-child .step-node { border-color: var(--gold); }
+.steps li:last-child .step-node::after { background: var(--gold); box-shadow: 0 0 12px var(--gold); }
+.steps .mono { color: var(--faint); }
+.steps h3 { margin: 10px 0 10px; font-size: 24px; font-weight: 600; letter-spacing: -.02em; }
+.steps p { margin: 0; color: var(--muted); font-size: 15px; }
+
 /* ── Motion: CSS-first entrance + scroll reveal (data-reveal, toggled by page script) ── */
 .anim { animation: rise .9s var(--ease) both; animation-delay: calc(var(--d, 0) * 90ms + 100ms); }
 @keyframes rise { from { opacity: 0; transform: translateY(24px); filter: blur(6px); } }
@@ -169,6 +211,13 @@ dialog h2 { margin: 0; font-size: clamp(26px, 3.4vw, 40px); font-weight: 600; li
   .section-head { grid-template-columns: 1fr; row-gap: 24px; }
   .case, .case:nth-child(even) { grid-template-columns: minmax(0, 1fr); }
   .case:nth-child(even) .case-visual { order: 0; }
+  .medals, .pillars { grid-template-columns: minmax(0, 1fr); }
+  .pillars li, .pillars li + li { padding: 28px 0; border-left: 0; border-bottom: 1px solid var(--line); }
+  .steps { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-left: 36px; }
+  .steps::before { top: 0; bottom: 0; left: 7px; right: auto; width: 1px; height: auto; background: linear-gradient(180deg, var(--sky), var(--gold)); transform-origin: top; }
+  .js .steps:not(.in)::before { transform: scaleY(0); }
+  .steps li { padding-top: 0; }
+  .step-node { left: -36px; }
   .case-phone, .case:nth-child(even) .case-phone { right: 0; left: auto; width: 28%; max-width: 150px; border-width: 4px; border-radius: 16px; }
 }
 @media (max-width: 960px) {
