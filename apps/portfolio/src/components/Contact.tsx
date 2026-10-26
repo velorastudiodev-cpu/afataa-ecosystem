@@ -1,260 +1,153 @@
 'use client';
-import dynamic from 'next/dynamic';
-import {
-  ArrowUpRight,
-  Copy,
-  Mail,
-  MessageCircle,
-  Instagram,
-  Linkedin,
-  Github,
-  Video,
-  Check,
-  CalendarDays,
-  ArrowRight,
-} from 'lucide-react';
-import { useState } from 'react';
-import { motion } from 'motion/react';
-import { content } from '@/lib/content';
+import { useEffect, useState } from 'react';
+import { ArrowUpRight, Check, Copy, Github, Instagram, Linkedin, Mail, MessageCircle, Video, CalendarDays, Hash } from 'lucide-react';
 import type { Profile } from '@afataa/validators';
-import { useScrollReveal } from '@/lib/useScrollReveal';
-import {
-  contactCopy,
-  contactHub,
-  socialCardContainer,
-  socialCard,
-} from '@/lib/animations';
+import { content } from '@/lib/content';
 
-const BookingEmbed = dynamic(() => import('./BookingEmbed'), {
-  ssr: false,
-  loading: () => <p role="status">Memuat kalender…</p>,
-});
-
-const channels = [
-  { name: 'GitHub', detail: 'Repositori kode & kontribusi terbuka', key: 'github', icon: Github },
-  { name: 'LinkedIn', detail: 'Jejaring & profil profesional', key: 'linkedin', icon: Linkedin },
-  { name: 'Instagram', detail: 'Catatan visual & dokumentasi karya', key: 'instagram', icon: Instagram },
-  { name: 'WhatsApp', detail: '+62 851 7968 1576 (Pesan langsung)', key: 'whatsapp', icon: MessageCircle },
-  { name: 'Discord', detail: 'velorastudio.cpu (Komunitas & diskusi)', key: 'discord', icon: MessageCircle },
-  { name: 'Zoom', detail: 'Ruang pertemuan daring', key: 'zoom', icon: Video },
-  { name: 'Email', detail: 'velorastudiodev@gmail.com', key: 'email', icon: Mail },
-] as const;
+const topics = ['Situs web baru', 'Dasbor CMS mandiri', 'Desain ulang situs', 'Konsultasi teknis'];
+const channels: { key: keyof Profile['socials']; name: string; icon: typeof Mail; copy?: boolean }[] = [
+  { key: 'email', name: 'Email', icon: Mail, copy: true },
+  { key: 'whatsapp', name: 'WhatsApp', icon: MessageCircle },
+  { key: 'linkedin', name: 'LinkedIn', icon: Linkedin },
+  { key: 'github', name: 'GitHub', icon: Github },
+  { key: 'instagram', name: 'Instagram', icon: Instagram },
+  { key: 'discord', name: 'Discord', icon: Hash, copy: true },
+  { key: 'zoom', name: 'Zoom', icon: Video },
+];
+const dayName = new Intl.DateTimeFormat('id-ID', { weekday: 'short' });
+const monthName = new Intl.DateTimeFormat('id-ID', { month: 'short' });
+const isoDate = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+// Show the handle people will recognise, not the bare domain.
+function handle(key: keyof Profile['socials'], value: string) {
+  if (key === 'email' || key === 'discord') return value;
+  if (key === 'zoom') return 'Ruang rapat daring';
+  const last = new URL(value).pathname.split('/').filter(Boolean).pop() ?? value;
+  if (key === 'whatsapp') return `+${last.slice(0, 2)} ${last.slice(2, 5)} ${last.slice(5, 9)} ${last.slice(9)}`;
+  return key === 'instagram' ? `@${last}` : last;
+}
+const draft = (topic: string) => `Halo Afataa, saya tertarik membahas ${topic.toLowerCase()}. Secara singkat, kebutuhan saya adalah: `;
 
 export default function Contact() {
-  const { profile } = content;
-  const socials = profile.socials;
-  const email = socials.email;
-
+  const { socials, calComLink, bookingVerified } = content.profile;
+  const [topic, setTopic] = useState(topics[0]);
+  const [message, setMessage] = useState(draft(topics[0]));
   const [copied, setCopied] = useState('');
-  const [status, setStatus] = useState('');
-  const [topic, setTopic] = useState('Pengembangan Situs Web Baru');
-  const [embed, setEmbed] = useState(false);
+  const [days, setDays] = useState<Date[]>([]);
+  const calUrl = `https://cal.com/${calComLink}`;
 
-  const message = `Halo Ahmad, saya ingin membahas ${topic.toLowerCase()}. Apakah kita dapat mengatur sesi konsultasi?`;
-  const emailUrl = email
-    ? `mailto:${email}?subject=${encodeURIComponent('Diskusi proyek — ' + topic)}&body=${encodeURIComponent(message)}`
-    : undefined;
-  const whatsappUrl = socials.whatsapp
-    ? `${socials.whatsapp}?text=${encodeURIComponent(message)}`
-    : undefined;
+  // Dates depend on the visitor's clock, so build them after hydration rather than at export time.
+  useEffect(() => {
+    const today = new Date();
+    setDays(Array.from({ length: 14 }, (_, i) => new Date(today.getFullYear(), today.getMonth(), today.getDate() + i)));
+  }, []);
 
-  async function copy(key: string, value: string) {
+  const pick = (t: string) => {
+    // Only replace the message if the visitor has not written their own yet.
+    if (message === draft(topic)) setMessage(draft(t));
+    setTopic(t);
+  };
+
+  const copy = async (name: string, value: string) => {
     try {
       await navigator.clipboard.writeText(value);
-      setCopied(key);
-      setStatus(`${key} tersalin`);
-      setTimeout(() => setCopied(''), 2200);
+      setCopied(name);
+      setTimeout(() => setCopied(''), 2000);
     } catch {
-      setStatus(`Salin manual: ${value}`);
+      setCopied('');
+      prompt(`Salin ${name}:`, value);
     }
-  }
+  };
 
-  function link(key: keyof Profile['socials'], value: string) {
-    return key === 'email'
-      ? `mailto:${value}`
-      : key === 'whatsapp'
-      ? `${value}?text=${encodeURIComponent(message)}`
-      : value;
-  }
-
-  // Two independent reveals: copy from left, hub from right
-  const copyReveal = useScrollReveal({ threshold: 0.15 });
-  const hubReveal = useScrollReveal({ threshold: 0.12 });
+  const href = (key: keyof Profile['socials'], value: string) =>
+    key === 'email' ? `mailto:${value}` : key === 'whatsapp' ? `${value}?text=${encodeURIComponent(message)}` : key === 'discord' ? undefined : value;
 
   return (
     <section id="contact" className="section contact">
-      <div className="section-label">
-        <span className="mono">04</span>
-        <span>Saluran konsultasi &amp; kolaborasi</span>
-      </div>
+      <div className="shell">
+        <p className="section-kicker mono" data-reveal><span>05</span>Kontak</p>
+        <h2 className="contact-title" data-reveal style={{ '--d': 1 } as React.CSSProperties}>
+          Punya proyek? <em>Mari bicara.</em>
+        </h2>
 
-      <div className="contact-layout">
-        {/* Copy — slides in from the left */}
-        <motion.div
-          className="contact-copy"
-          ref={copyReveal.ref as React.RefObject<HTMLDivElement>}
-          variants={contactCopy}
-          initial="hidden"
-          animate={copyReveal.controls}
-        >
-          <h2>
-            Mari wujudkan proyek digital Anda berikutnya
-            <br />
-            <em>secara terstruktur.</em>
-          </h2>
-          <p>
-            Memiliki produk digital yang ingin dibangun, sistem bisnis yang perlu
-            disederhanakan, atau tantangan teknis kompleks yang membutuhkan solusi?
-            Mari diskusikan kebutuhan Anda secara mendalam.
-          </p>
-          <div className="contact-actions">
-            <a className="button" href={emailUrl}>
-              Mulai Diskusi Proyek
-              <ArrowUpRight size={16} />
-            </a>
-            {email && (
-              <button className="text-link" onClick={() => copy('Email', email)}>
-                {copied === 'Email' ? <Check size={15} /> : <Copy size={15} />}
-                Salin Alamat Email
-              </button>
-            )}
-          </div>
-          <div className="contact-signature">
-            <span className="signature-mark">aak.</span>
-            <div>
-              <strong>Ahmad Afataa Kusdianto</strong>
-              <span>Pengembangan Web · Desain UI/UX · Perangkat Lunak</span>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Hub — slides in from the right, social cards stagger in */}
-        <motion.div
-          className="contact-hub"
-          ref={hubReveal.ref as React.RefObject<HTMLDivElement>}
-          variants={contactHub}
-          initial="hidden"
-          animate={hubReveal.controls}
-        >
-          <div className="booking-card">
-            <div className="booking-card-head">
-              <span className="mono">Penjadwalan Diskusi</span>
-              <CalendarDays size={20} />
-            </div>
-            <h3>
-              Langkah awal yang jelas
-              <br />
-              <em>untuk proyek Anda.</em>
-            </h3>
-            <p>
-              Sampaikan gambaran kebutuhan Anda. Kita akan mengatur jadwal diskusi
-              untuk membahas rincian kebutuhan, ruang lingkup pengerjaan, serta
-              tahapan implementasi berikutnya.
-            </p>
-            <label className="field-label" htmlFor="enquiry-topic">
-              Jenis proyek apa yang ingin Anda bangun?
-            </label>
-            <select
-              id="enquiry-topic"
-              value={topic}
-              onChange={(e) => setTopic(e.target.value)}
-            >
-              <option>Pengembangan Situs Web Baru</option>
-              <option>Sistem Manajemen Konten (CMS) / Dasbor Kustom</option>
-              <option>Perancangan Desain Antarmuka (UI/UX)</option>
-              <option>Konsultasi Arsitektur &amp; Teknis</option>
-            </select>
-            <div className="booking-links">
-              {whatsappUrl && (
-                <a href={whatsappUrl} target="_blank" rel="noreferrer">
-                  <MessageCircle size={16} />
-                  Diskusikan Melalui WhatsApp
-                  <ArrowUpRight size={14} />
+        <div className="contact-grid">
+          <form className="brief" data-reveal onSubmit={(e) => e.preventDefault()} aria-labelledby="brief-title">
+            <h3 id="brief-title">Susun pesan singkat</h3>
+            <fieldset>
+              <legend className="mono">Apa yang ingin Anda bangun?</legend>
+              <div className="chips">
+                {topics.map((t) => (
+                  <label key={t} className={`chip ${topic === t ? 'is-on' : ''}`}>
+                    <input type="radio" name="topic" value={t} checked={topic === t} onChange={() => pick(t)} />
+                    {t}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+            <label className="mono" htmlFor="brief-message">Pesan</label>
+            <textarea id="brief-message" rows={4} maxLength={800} value={message} onChange={(e) => setMessage(e.target.value)} />
+            <div className="brief-actions">
+              {socials.whatsapp && (
+                <a className="btn btn-gold" href={`${socials.whatsapp}?text=${encodeURIComponent(message)}`} target="_blank" rel="noreferrer">
+                  <MessageCircle size={17} /> Kirim via WhatsApp
                 </a>
               )}
-              {emailUrl && (
-                <a href={emailUrl}>
-                  <Mail size={16} />
-                  Kirim Rincian Proyek
-                  <ArrowRight size={14} />
+              {socials.email && (
+                <a className="btn btn-ghost" href={`mailto:${socials.email}?subject=${encodeURIComponent(`Diskusi proyek — ${topic}`)}&body=${encodeURIComponent(message)}`}>
+                  <Mail size={17} /> Kirim via Email
                 </a>
               )}
             </div>
-            {profile.bookingVerified ? (
-              <>
-                <button
-                  className="text-link calendar-toggle"
-                  onClick={() => setEmbed(!embed)}
-                >
-                  {embed ? 'Sembunyikan' : 'Buka'} Kalender Penjadwalan
-                  <CalendarDays size={15} />
-                </button>
-                {embed && <BookingEmbed slug={profile.calComLink} />}
-              </>
-            ) : (
-              <p className="booking-note">
-                Jadwal konsultasi diatur melalui pesan. Kalender daring akan segera tersedia.
-              </p>
+          </form>
+
+          <div className="contact-side">
+            {bookingVerified && (
+              <div className="booking" data-reveal style={{ '--d': 1 } as React.CSSProperties}>
+                <div className="booking-head">
+                  <h3><CalendarDays size={18} /> Jadwalkan panggilan</h3>
+                  <a className="link" href={calUrl} target="_blank" rel="noreferrer">Semua jadwal <ArrowUpRight size={14} /></a>
+                </div>
+                <p>Pilih tanggal, lalu tentukan jam yang tersedia di Cal.com.</p>
+                <ul className="days" aria-label="Tanggal dua minggu ke depan">
+                  {days.map((d, i) => (
+                    <li key={isoDate(d)}>
+                      <a href={`${calUrl}?date=${isoDate(d)}`} target="_blank" rel="noreferrer" aria-label={`Jadwalkan pada ${d.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long' })}`}>
+                        <span>{i === 0 ? 'Hari ini' : dayName.format(d)}</span>
+                        <b>{d.getDate()}</b>
+                        <span>{monthName.format(d)}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             )}
+
+            <ul className="channels" data-reveal style={{ '--d': 2 } as React.CSSProperties}>
+              {channels.map(({ key, name, icon: Icon, copy: canCopy }) => {
+                const value = socials[key];
+                if (!value) return null;
+                const link = href(key, value);
+                const shown = handle(key, value);
+                return (
+                  <li key={key}>
+                    {link ? (
+                      <a href={link} target={key === 'email' ? undefined : '_blank'} rel="noreferrer">
+                        <Icon size={18} /><span>{name}</span><span className="mono">{shown}</span><ArrowUpRight size={15} />
+                      </a>
+                    ) : (
+                      <span className="channel-static"><Icon size={18} /><span>{name}</span><span className="mono">{shown}</span></span>
+                    )}
+                    {canCopy && (
+                      <button className="icon-btn" onClick={() => copy(name, value)} aria-label={`Salin ${name}`}>
+                        {copied === name ? <Check size={15} /> : <Copy size={15} />}
+                      </button>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+            <p className="sr-only" aria-live="polite">{copied && `${copied} tersalin`}</p>
           </div>
-
-          {/* Social grid — staggered pop-in */}
-          <motion.div
-            className="social-grid"
-            variants={socialCardContainer}
-            initial="hidden"
-            animate={hubReveal.controls}
-          >
-            {channels.map(({ name, detail, key, icon: Icon }) => {
-              const value = socials[key];
-              return (
-                <motion.div
-                  key={key}
-                  className={`social-card ${value ? '' : 'inactive'}`}
-                  variants={socialCard}
-                >
-                  <span className="social-icon">
-                    <Icon size={17} />
-                  </span>
-                  {value && key !== 'discord' ? (
-                    <a
-                      className="social-main"
-                      href={link(key, value)}
-                      target={key === 'email' ? undefined : '_blank'}
-                      rel={key === 'email' ? undefined : 'noreferrer'}
-                    >
-                      <b>
-                        {name}
-                        <ArrowUpRight size={12} />
-                      </b>
-                      <small>{detail}</small>
-                    </a>
-                  ) : (
-                    <div className="social-main">
-                      <b>{name}</b>
-                      <small>{value || detail}</small>
-                    </div>
-                  )}
-                  {value && (
-                    <button
-                      className="icon-button copy-channel"
-                      aria-label={`Copy ${name}`}
-                      onClick={() =>
-                        copy(name, key === 'whatsapp' ? '+6285179681576' : value)
-                      }
-                    >
-                      {copied === name ? <Check size={14} /> : <Copy size={14} />}
-                    </button>
-                  )}
-                </motion.div>
-              );
-            })}
-          </motion.div>
-
-          <p className="copy-status" role="status">
-            {status}
-          </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

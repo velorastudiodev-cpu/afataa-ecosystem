@@ -1,11 +1,32 @@
 import {chromium} from 'playwright';
-const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH||'/usr/bin/chromium',args:['--no-sandbox','--disable-dev-shm-usage','--no-zygote']});
-const page=await browser.newPage({viewport:{width:1440,height:1100},deviceScaleFactor:1});
-await page.goto(process.env.AFATAA_URL||'http://127.0.0.1:4173',{waitUntil:'networkidle'});
-const checks=[['hero crystal',page.locator('.crystal-stage')],['pedigree',page.locator('#pedigree')],['masterpieces',page.locator('#work')],['workspace',page.locator('#workspace')],['contact',page.locator('#contact')]];
-for(const [name,locator] of checks){if(!await locator.count())throw new Error(`Missing ${name}`);}
-await page.getByRole('button',{name:/Run Dijkstra/}).click();await page.waitForTimeout(300);if(!await page.locator('.cell.visited').count())throw new Error('Pathfinder did not animate');
-await page.locator('#tab-tokens').click();if(!await page.locator('#panel-tokens').isVisible())throw new Error('Token tab did not open');
-await page.locator('button[aria-label="Open Ikbar Barbershop interactive preview"]').click();if(!await page.locator('dialog.preview-dialog').isVisible())throw new Error('Preview dialog did not open');await page.locator('dialog.preview-dialog .icon-button').click();
-await page.setViewportSize({width:390,height:844});await page.reload({waitUntil:'networkidle'});await page.locator('.menu-toggle').click();if((await page.locator('.nav-open').count())!==1)throw new Error('Mobile menu did not open');
+const browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH&&{executablePath:process.env.CHROMIUM_PATH})});
+const url=process.env.AFATAA_URL||'http://127.0.0.1:4173';
+const fail=(m)=>{throw new Error(m);};
+const page=await browser.newPage({viewport:{width:1440,height:1000}});
+const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+await page.goto(url,{waitUntil:'networkidle'});
+for(const id of ['hero','work','pedigree','process','lab','contact'])if(!await page.locator(`#${id}`).count())fail(`Missing #${id}`);
+if(!await page.locator('canvas.graph-field').count())fail('Hero graph missing');
+
+// Lab: race both algorithms and check A* explores less.
+await page.getByRole('button',{name:'Mulai Balapan'}).click();
+await page.waitForFunction(()=>/lebih hemat|Tidak ada rute/.test(document.querySelector('.lab-summary')?.textContent||''),null,{timeout:10000});
+if(!await page.locator('.lane.is-winner').count())fail('A* did not win the race');
+
+// Project preview dialog opens and closes with Escape.
+await page.getByRole('button',{name:'Pratinjau'}).first().click();
+if(!await page.locator('dialog.preview-dialog').isVisible())fail('Preview dialog did not open');
+await page.keyboard.press('Escape');
+if(await page.locator('dialog').count())fail('Dialog did not close');
+
+// Contact: choosing a topic rewrites the untouched draft and the WhatsApp link.
+await page.getByText('Dasbor CMS mandiri').click();
+if(!(await page.locator('#brief-message').inputValue()).includes('dasbor cms'))fail('Topic did not update message');
+if(!(await page.getByRole('link',{name:/Kirim via WhatsApp/}).getAttribute('href')).includes(encodeURIComponent('dasbor cms')))fail('WhatsApp link not prefilled');
+
+// Mobile: no horizontal overflow, menu opens.
+await page.setViewportSize({width:390,height:844});await page.reload({waitUntil:'networkidle'});
+const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth);if(overflow>0)fail(`Mobile overflows by ${overflow}px`);
+await page.locator('.menu-toggle').click();await page.locator('.nav.is-open .nav-links').waitFor({state:'visible',timeout:3000});
+if(errors.length)fail(`Page errors: ${errors.join('; ')}`);
 console.log('Browser checks passed');await browser.close();
