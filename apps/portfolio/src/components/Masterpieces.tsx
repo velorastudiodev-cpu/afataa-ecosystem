@@ -1,305 +1,75 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import {
-  ArrowLeft,
-  ArrowRight,
-  ArrowUpRight,
-  Pause,
-  Play,
-  Scan,
-  FileText,
-  LockKeyhole,
-} from 'lucide-react';
+import { useState } from 'react';
+import { ArrowUpRight, FileText, Maximize2, Link2 } from 'lucide-react';
 import type { Masterpiece } from '@afataa/validators';
-import ProjectDialog from './ProjectDialog';
 import SectionTitle from './SectionTitle';
-import { useScrollReveal } from '@/lib/useScrollReveal';
-import { masterpiecesSection, projectGridItem } from '@/lib/animations';
+import ProjectDialog from './ProjectDialog';
+
+const categoryLabel: Record<Masterpiece['category'], string> = {
+  FULLSTACK_ECOSYSTEM: 'Ekosistem full-stack',
+  AUTONOMOUS_CMS: 'CMS mandiri',
+  WEB_PLATFORM: 'Platform web',
+  SOFTWARE_TOOL: 'Perangkat lunak',
+};
 
 export default function Masterpieces({ projects }: { projects: Masterpiece[] }) {
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [hover, setHover] = useState(false);
-  const [focused, setFocused] = useState(false);
-  const [visible, setVisible] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const [dialog, setDialog] = useState<{
-    project: Masterpiece;
-    mode: 'report' | 'preview';
-  } | null>(null);
-
-  const reduced = useReducedMotion();
-  const region = useRef<HTMLDivElement>(null);
-  const touch = useRef<number | null>(null);
-  const project = projects[index];
-  const categoryLabel = project.category === 'FULLSTACK_ECOSYSTEM'
-    ? 'Ekosistem full-stack'
-    : project.category === 'AUTONOMOUS_CMS'
-    ? 'Sistem manajemen konten (CMS)'
-    : 'Platform web & informasi';
-
-  // Scroll reveal for the whole section
-  const sectionReveal = useScrollReveal({ threshold: 0.08 });
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => setVisible(e.isIntersecting),
-      { threshold: 0.2 }
-    );
-    if (region.current) obs.observe(region.current);
-    const change = () => setHidden(document.hidden);
-    document.addEventListener('visibilitychange', change);
-    return () => {
-      obs.disconnect();
-      document.removeEventListener('visibilitychange', change);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (paused || hover || focused || hidden || !visible || reduced || dialog) return;
-    const timer = setInterval(
-      () => setIndex((i) => (i + 1) % projects.length),
-      8000
-    );
-    return () => clearInterval(timer);
-  }, [paused, hover, focused, hidden, visible, reduced, dialog, projects.length]);
-
-  const choose = (n: number) => {
-    setPaused(true);
-    setIndex((n + projects.length) % projects.length);
-  };
-
-  const actions = (p: Masterpiece, compact = false) => (
-    <div className={`project-actions ${compact ? 'compact' : ''}`}>
-      <a href={p.liveUrl} target="_blank" rel="noreferrer" className="text-link">
-        {p.id === 'cms' ? 'Buka Dasbor Admin' : 'Buka Situs Langsung'}
-        <ArrowUpRight size={15} />
-      </a>
-      <button className="text-link" onClick={() => setDialog({ project: p, mode: 'preview' })}>
-        <Scan size={15} />
-        Pratinjau Interaktif
-      </button>
-      <button className="text-link" onClick={() => setDialog({ project: p, mode: 'report' })}>
-        <FileText size={15} />
-        Laporan Arsitektur Teknis
-      </button>
-    </div>
-  );
+  const [open, setOpen] = useState<{ project: Masterpiece; mode: 'report' | 'preview' } | null>(null);
+  const sorted = [...projects].sort((a, b) => a.featuredOrder - b.featuredOrder);
+  const byUrl = new Map(projects.map((p) => [p.liveUrl, p]));
 
   return (
-    <motion.section
-      id="work"
-      className="work section"
-      ref={sectionReveal.ref as React.RefObject<HTMLElement>}
-      variants={masterpiecesSection}
-      initial="hidden"
-      animate={sectionReveal.controls}
-    >
-      <SectionTitle
-        number="02"
-        label="Portofolio karya unggulan"
-        title="Solusi digital nyata yang bekerja lebih"
-        italic="efektif."
-      >
-        Etalase digital bisnis, pusat kendali manajemen konten, dan platform informasi
-        ekspedisi. Tiga produk digital berbeda yang masing-masing dirancang mengikuti
-        kebutuhan penggunanya.
-      </SectionTitle>
+    <section id="work" className="section work">
+      <div className="shell">
+        <SectionTitle number="01" label="Karya terpilih" title="Sistem nyata yang sedang" italic="bekerja hari ini.">
+          Etalase bisnis, pusat kendali konten, dan platform informasi ekspedisi. Tiga produk yang
+          masing-masing dirancang dari kebutuhan penggunanya, bukan dari templat.
+        </SectionTitle>
 
-      <div
-        className="showcase"
-        ref={region}
-        aria-roledescription="carousel"
-        aria-label="Karya unggulan"
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-        onFocusCapture={() => setFocused(true)}
-        onBlurCapture={(e) => {
-          if (!e.currentTarget.contains(e.relatedTarget as Node))
-            setFocused(false);
-        }}
-        onKeyDown={(e) => {
-          if (e.key === 'ArrowLeft') choose(index - 1);
-          if (e.key === 'ArrowRight') choose(index + 1);
-        }}
-      >
-        <div className="showcase-rail">
-          <div className="project-select" role="group" aria-label="Pilih karya unggulan">
-            {projects.map((p, i) => (
-              <button
-                key={p.id}
-                aria-label={`Show ${p.title}`}
-                aria-pressed={index === i}
-                onClick={() => choose(i)}
-              >
-                <span className="project-index">0{i + 1}</span>
-                <span className="project-name project-name-desktop">
-                  {['Etalase Digital', 'Dasbor Manajemen', 'Platform Ekspedisi'][i]}
-                </span>
-                <span className="project-name project-name-mobile">
-                  {p.id === 'cms' ? 'Ikbar CMS' : p.id === 'dzikri' ? 'Dzikri Mount' : 'Ikbar Barbershop'}
-                </span>
-              </button>
-            ))}
-          </div>
-          <span className="showcase-hint">Geser pratinjau · pilih proyek</span>
-          <button
-            className="icon-button"
-            aria-label={paused ? 'Mulai rotasi otomatis' : 'Jeda rotasi otomatis'}
-            aria-pressed={!paused}
-            onClick={() => setPaused(!paused)}
-          >
-            {paused ? <Play size={15} /> : <Pause size={15} />}
-          </button>
-        </div>
-
-        <div className="spotlight">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={project.id}
-              className="spotlight-copy"
-              initial={{ opacity: 0, y: reduced ? 0 : 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ type: 'spring', stiffness: 220, damping: 26 }}
-            >
-              <span className="mono project-category">
-                {categoryLabel}
-              </span>
-              <h3>
-                {project.id === 'ikbar' ? (
-                  <>
-                    Ikbar Barbershop
-                    <br />
-                    <em>Platform Web Layanan Grooming Modern</em>
-                  </>
-                ) : project.id === 'cms' ? (
-                  <>
-                    Ikbar Autonomous CMS
-                    <br />
-                    <em>Dasbor Kendali Situs Web Mandiri</em>
-                  </>
-                ) : (
-                  <>
-                    Dzikri Mount Guide
-                    <br />
-                    <em>Platform Panduan Ekspedisi &amp; Pendakian Gunung</em>
-                  </>
-                )}
-              </h3>
-              <p>{project.summary}</p>
-              {project.id !== 'dzikri' && (
-                <div className="ecosystem-note">
-                  <span className="connection-line" />
-                  Satu merek bisnis dalam dua ekosistem sistem yang saling terhubung.
+        <ol className="cases">
+          {sorted.map((p, i) => {
+            const [name, tagline] = p.title.split(' — ');
+            const host = new URL(p.liveUrl).host + new URL(p.liveUrl).pathname.replace(/\/$/, '');
+            const paired = p.pairedDashboardUrl ? byUrl.get(p.pairedDashboardUrl) : sorted.find((o) => o.pairedDashboardUrl === p.liveUrl);
+            return (
+              <li key={p.id} className="case" data-reveal>
+                <figure className="case-visual">
+                  <button className="case-frame" onClick={() => setOpen({ project: p, mode: 'preview' })} aria-label={`Buka pratinjau ${name}`}>
+                    <span className="frame-bar" aria-hidden="true">
+                      <i /><i /><i /><span className="mono">{host}</span>
+                    </span>
+                    <img src={p.image} alt={`Tangkapan layar desktop ${name}`} loading="lazy" width={1280} height={889} />
+                  </button>
+                  <img className="case-phone" src={p.image.replace('.webp', '-mobile.webp')} alt={`Tangkapan layar seluler ${name}`} loading="lazy" width={390} height={844} />
+                </figure>
+                <div className="case-copy">
+                  <p className="case-meta mono">
+                    <span className="case-index">{String(i + 1).padStart(2, '0')}</span>
+                    {categoryLabel[p.category]} · {p.subtitle.split(' · ').pop()}
+                  </p>
+                  <h3>{name}</h3>
+                  {tagline && <p className="case-tagline"><em>{tagline}</em></p>}
+                  <p className="case-summary">{p.summary}</p>
+                  {paired && (
+                    <p className="case-pair mono"><Link2 size={14} /> Satu ekosistem dengan {paired.title.split(' — ')[0]}</p>
+                  )}
+                  <div className="case-actions">
+                    <a className="btn btn-light btn-sm" href={p.liveUrl} target="_blank" rel="noreferrer">
+                      {p.category === 'AUTONOMOUS_CMS' ? 'Buka Dasbor' : 'Kunjungi Situs'} <ArrowUpRight size={15} />
+                    </a>
+                    <button className="btn btn-ghost btn-sm" onClick={() => setOpen({ project: p, mode: 'preview' })}>
+                      <Maximize2 size={14} /> Pratinjau
+                    </button>
+                    <button className="link" onClick={() => setOpen({ project: p, mode: 'report' })}>
+                      <FileText size={15} /> Catatan proyek
+                    </button>
+                  </div>
                 </div>
-              )}
-              {actions(project)}
-            </motion.div>
-          </AnimatePresence>
-
-          <div
-            className="screen-wrap"
-            onTouchStart={(e) => {
-              touch.current = e.touches[0].clientX;
-            }}
-            onTouchEnd={(e) => {
-              if (touch.current !== null) {
-                const diff = e.changedTouches[0].clientX - touch.current;
-                if (Math.abs(diff) > 55) choose(index + (diff < 0 ? 1 : -1));
-                touch.current = null;
-              }
-            }}
-          >
-            <div className="browser-bar">
-              <div className="browser-dots">
-                <i />
-                <i />
-                <i />
-              </div>
-              <span>
-                <LockKeyhole size={10} />
-                {new URL(project.liveUrl).host}
-                {project.id === 'cms' ? '/dashboard' : ''}
-              </span>
-              <ArrowUpRight size={12} />
-            </div>
-            <button
-              className="screen-image-button"
-              aria-label={`Buka pratinjau interaktif ${project.title}`}
-              onClick={() => setDialog({ project, mode: 'preview' })}
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.img
-                  key={project.id}
-                  className="project-image"
-                  src={project.image}
-                  width={1280}
-                  height={889}
-                  alt={`${project.title} screenshot captured from the live website`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: reduced ? 0 : 0.3 }}
-                />
-              </AnimatePresence>
-              <span className="screen-hover">
-                <Scan size={16} />
-                Jelajahi Pratinjau
-              </span>
-            </button>
-            <div className="screen-foot">
-              <span className="mono">
-                {project.id === 'cms'
-                  ? 'Memerlukan autentikasi pemilik sistem'
-                  : 'Tampilan langsung dari situs produksi'}
-              </span>
-              <div>
-                <button className="icon-button" aria-label="Proyek sebelumnya" onClick={() => choose(index - 1)}>
-                  <ArrowLeft size={16} />
-                </button>
-                <span className="mono">0{index + 1} / 03</span>
-                <button className="icon-button" aria-label="Proyek berikutnya" onClick={() => choose(index + 1)}>
-                  <ArrowRight size={16} />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+              </li>
+            );
+          })}
+        </ol>
       </div>
-
-      {/* Project grid cards — each stagger-pops in */}
-      <div className="project-grid">
-        {projects.slice(1).map((p, i) => (
-          <motion.article
-            className="project-card"
-            key={p.id}
-            custom={i}
-            variants={projectGridItem}
-            initial="hidden"
-            animate={sectionReveal.controls}
-          >
-            <div className="card-top">
-              <span className="mono">
-                0{i + 2} / {i === 0 ? 'Sistem Manajemen Konten (CMS)' : 'Platform Web & Informasi'}
-              </span>
-              <ArrowUpRight size={18} />
-            </div>
-            <h3>{p.title}</h3>
-            <p>{p.summary}</p>
-            {actions(p, true)}
-          </motion.article>
-        ))}
-      </div>
-
-      {dialog && (
-        <ProjectDialog
-          key={`${dialog.project.id}-${dialog.mode}`}
-          {...dialog}
-          onClose={() => setDialog(null)}
-        />
-      )}
-    </motion.section>
+      {open && <ProjectDialog project={open.project} mode={open.mode} onClose={() => setOpen(null)} />}
+    </section>
   );
 }

@@ -1,6 +1,8 @@
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import Reveal from '@/components/Reveal';
+import Masterpieces from '@/components/Masterpieces';
+import { content } from '@/lib/content';
 
 export default function Home() {
   return (
@@ -11,6 +13,7 @@ export default function Home() {
       <main id="main-content">
         <div id="top" />
         <Hero />
+        <Masterpieces projects={content.masterpieces} />
       </main>
       <Reveal />
     </>

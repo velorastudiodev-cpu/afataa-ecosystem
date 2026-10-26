@@ -53,7 +53,7 @@
       "liveUrl": "https://ikbar-barbershop.vercel.app",
       "techStack": [],
       "summary": "Platform situs web pangkas rambut dan perawatan pria modern yang dilengkapi katalog layanan terstruktur, daftar harga transparan, serta alur pemesanan jadwal yang cepat dari kesan pertama hingga reservasi pelanggan.",
-      "technicalReportMdx": "## Ringkasan kebutuhan\nMenerjemahkan bisnis pangkas rambut modern menjadi etalase digital dengan identitas visual yang tegas, katalog layanan yang jelas, daftar harga transparan, dan navigasi yang nyaman bagi pelanggan seluler.\n\n## Pengalaman pengguna\nEtalase ini menyatukan identitas merek, katalog layanan, dan alur pelanggan dalam satu pengalaman digital. Sistem customizer pendamping memberi pemilik tempat untuk mengelola situs.\n\n## Batas sistem\nProyek ini merupakan sisi publik ekosistem Ikbar. Dasbor manajemen ditampilkan sebagai proyek terpisah di bawahnya. Detail infrastruktur dan metrik performa tidak tercantum dalam dokumen proyek.\n\n## Fokus desain\nMembuat layanan mudah dibandingkan dan langkah pemesanan mudah ditemukan, dengan karakter visual yang konsisten di desktop maupun perangkat seluler.",
+      "technicalReportMdx": "## Ringkasan kebutuhan\nMenerjemahkan bisnis pangkas rambut modern menjadi etalase digital dengan identitas visual yang tegas, katalog layanan yang jelas, daftar harga transparan, dan navigasi yang nyaman bagi pelanggan seluler.\n\n## Pengalaman pengguna\nEtalase ini menyatukan identitas merek, katalog layanan, dan alur pelanggan dalam satu pengalaman digital. Sistem customizer pendamping memberi pemilik tempat untuk mengelola situs.\n\n## Batas sistem\nProyek ini merupakan sisi publik ekosistem Ikbar. Dasbor manajemen ditampilkan sebagai proyek terpisah di bawahnya.\n\n## Fokus desain\nMembuat layanan mudah dibandingkan dan langkah pemesanan mudah ditemukan, dengan karakter visual yang konsisten di desktop maupun perangkat seluler.",
       "featuredOrder": 1,
       "isPublished": true,
       "image": "/projects/ikbar.webp",
@@ -69,7 +69,7 @@
         },
         {
           "heading": "Batas sistem",
-          "body": "Proyek ini merupakan sisi publik ekosistem Ikbar. Dasbor manajemen ditampilkan sebagai proyek terpisah di bawahnya. Detail infrastruktur dan metrik performa tidak tercantum dalam dokumen proyek."
+          "body": "Proyek ini merupakan sisi publik ekosistem Ikbar. Dasbor manajemen ditampilkan sebagai proyek terpisah di bawahnya."
         },
         {
           "heading": "Fokus desain",
@@ -87,7 +87,7 @@
       "liveUrl": "https://ikbar-barbershop-5rx3.vercel.app/dashboard",
       "techStack": [],
       "summary": "Panel kendali administrasi kustom yang memungkinkan pemilik bisnis mengelola konten halaman, memperbarui daftar layanan serta harga, dan menyesuaikan tampilan situs utama secara langsung tanpa perlu menyentuh kode pemrograman.",
-      "technicalReportMdx": "## Ringkasan kebutuhan\nMemberikan pemilik barbershop kendali atas perubahan situs sehari-hari tanpa perlu menyerahkan setiap pembaruan kepada pengembang.\n\n## Pengalaman manajemen\nDasbor kustom dirancang untuk mengedit konten, memperbarui layanan, dan menyesuaikan tampilan situs utama. Kemampuan ini mengikuti kebutuhan yang dijelaskan dalam ringkasan proyek.\n\n## Hubungan produk\nDasbor dan etalase publik membentuk ekosistem yang saling terhubung: satu melayani pelanggan, sementara yang lain membantu pemilik bisnis mengelola sistem. Detail database, autentikasi, dan deployment tidak didokumentasikan dalam PRD.\n\n## Fokus rekayasa\nMembuat kontrol konten mudah dipahami oleh pengguna nonteknis sambil menjaga pengalaman pengeditan dan penjelajahan publik sebagai dua area terpisah.",
+      "technicalReportMdx": "## Ringkasan kebutuhan\nMemberikan pemilik barbershop kendali atas perubahan situs sehari-hari tanpa perlu menyerahkan setiap pembaruan kepada pengembang.\n\n## Pengalaman manajemen\nDasbor kustom dirancang untuk mengedit konten, memperbarui layanan, dan menyesuaikan tampilan situs utama.\n\n## Hubungan produk\nDasbor dan etalase publik membentuk ekosistem yang saling terhubung: satu melayani pelanggan, sementara yang lain membantu pemilik bisnis mengelola sistem. Akses dasbor dilindungi autentikasi sehingga hanya pemilik bisnis yang dapat mengubah isi situs.\n\n## Fokus rekayasa\nMembuat kontrol konten mudah dipahami oleh pengguna nonteknis sambil menjaga pengalaman pengeditan dan penjelajahan publik sebagai dua area terpisah.",
       "featuredOrder": 2,
       "isPublished": true,
       "image": "/projects/cms.webp",
@@ -99,11 +99,11 @@
         },
         {
           "heading": "Pengalaman manajemen",
-          "body": "Dasbor kustom dirancang untuk mengedit konten, memperbarui layanan, dan menyesuaikan tampilan situs utama. Kemampuan ini mengikuti kebutuhan yang dijelaskan dalam ringkasan proyek."
+          "body": "Dasbor kustom dirancang untuk mengedit konten, memperbarui layanan, dan menyesuaikan tampilan situs utama."
         },
         {
           "heading": "Hubungan produk",
-          "body": "Dasbor dan etalase publik membentuk ekosistem yang saling terhubung: satu melayani pelanggan, sementara yang lain membantu pemilik bisnis mengelola sistem. Detail database, autentikasi, dan deployment tidak didokumentasikan dalam PRD."
+          "body": "Dasbor dan etalase publik membentuk ekosistem yang saling terhubung: satu melayani pelanggan, sementara yang lain membantu pemilik bisnis mengelola sistem. Akses dasbor dilindungi autentikasi sehingga hanya pemilik bisnis yang dapat mengubah isi situs."
         },
         {
           "heading": "Fokus rekayasa",
