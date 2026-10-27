@@ -37,9 +37,14 @@ export default function Masterpieces({ projects }: { projects: Masterpiece[] }) 
                     <span className="frame-bar" aria-hidden="true">
                       <i /><i /><i /><span className="mono">{host}</span>
                     </span>
-                    <img src={p.image} alt={`Tangkapan layar desktop ${name}`} loading="lazy" width={1280} height={889} />
+                    <img
+                      src={p.image}
+                      srcSet={`${p.image.replace('.webp', '-640.webp')} 640w, ${p.image.replace('.webp', '-960.webp')} 960w, ${p.image} 1280w`}
+                      sizes="(max-width: 960px) calc(100vw - 32px), 680px"
+                      alt={`Tangkapan layar desktop ${name}`} loading="lazy" decoding="async" width={1280} height={889}
+                    />
                   </button>
-                  <img className="case-phone" src={p.image.replace('.webp', '-mobile.webp')} alt={`Tangkapan layar seluler ${name}`} loading="lazy" width={390} height={844} />
+                  <img className="case-phone" src={p.image.replace('.webp', '-mobile-240.webp')} decoding="async" alt={`Tangkapan layar seluler ${name}`} loading="lazy" width={390} height={844} />
                 </figure>
                 <div className="case-copy">
                   <p className="case-meta mono">

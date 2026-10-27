@@ -13,6 +13,7 @@ export default function Home() {
     <>
       <a className="skip-link" href="#main-content">Lewati ke konten utama</a>
       <div className="grain" aria-hidden="true" />
+      <div className="scroll-progress" aria-hidden="true" />
       <Navigation />
       <main id="main-content">
         <div id="top" />

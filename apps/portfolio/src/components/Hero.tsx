@@ -1,11 +1,12 @@
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import GraphField from './GraphField';
+import Words from './Words';
 import { content } from '@/lib/content';
 
 export default function Hero() {
   const { profile, achievements, masterpieces } = content;
   const stats = [
-    ...achievements.map((a) => ({ value: a.isGoldHighlight ? 'Emas' : 'Semifinal',label: a.rankOrMedal, sub: `${a.organization} · ${a.year}`, gold: a.isGoldHighlight })),
+    ...achievements.map((a) => ({ value: a.isGoldHighlight ? 'Emas' : 'Semifinal', label: a.rankOrMedal, sub: `${a.organization} · ${a.year}`, gold: a.isGoldHighlight })),
     { value: String(masterpieces.length), label: 'Sistem produksi aktif', sub: 'Etalase, CMS & platform informasi', gold: false },
   ];
 
@@ -20,7 +21,7 @@ export default function Hero() {
           {profile.fullName} <span className="hide-sm">— {profile.roles.join(' / ')}</span>
         </p>
         <h1 className="anim" style={{ '--d': 2 } as React.CSSProperties}>
-          Logika juara olimpiade, dirangkai menjadi <em>situs web yang presisi.</em>
+          <Words text="Logika juara olimpiade, dirangkai menjadi" /> <em><Words text="situs web yang presisi." from={5} /></em>
         </h1>
         <div className="hero-row">
           <p className="hero-lede anim" style={{ '--d': 3 } as React.CSSProperties}>{profile.shortBio}</p>

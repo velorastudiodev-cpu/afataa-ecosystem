@@ -1,3 +1,5 @@
+import Words from './Words';
+
 export default function SectionTitle({
   number,
   label,
@@ -17,7 +19,7 @@ export default function SectionTitle({
         <span>{number}</span>{label}
       </p>
       <h2 data-reveal style={{ '--d': 1 } as React.CSSProperties}>
-        {title} <em>{italic}</em>
+        <Words text={title} /> <em><Words text={italic} from={title.split(' ').length} /></em>
       </h2>
       {children && <p className="section-intro" data-reveal style={{ '--d': 2 } as React.CSSProperties}>{children}</p>}
     </header>

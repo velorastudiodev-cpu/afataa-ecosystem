@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { ArrowUpRight, Check, Copy, Github, Instagram, Linkedin, Mail, MessageCircle, Video, CalendarDays, Hash } from 'lucide-react';
 import type { Profile } from '@afataa/validators';
 import { content } from '@/lib/content';
+import Words from './Words';
 
 const topics = ['Situs web baru', 'Dasbor CMS mandiri', 'Desain ulang situs', 'Konsultasi teknis'];
 const channels: { key: keyof Profile['socials']; name: string; icon: typeof Mail; copy?: boolean }[] = [
@@ -66,7 +67,7 @@ export default function Contact() {
       <div className="shell">
         <p className="section-kicker mono" data-reveal><span>05</span>Kontak</p>
         <h2 className="contact-title" data-reveal style={{ '--d': 1 } as React.CSSProperties}>
-          Punya proyek? <em>Mari bicara.</em>
+          <Words text="Punya proyek?" /> <em><Words text="Mari bicara." from={2} /></em>
         </h2>
 
         <div className="contact-grid">

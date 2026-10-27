@@ -17,6 +17,15 @@ export default function Lab() {
   const [running, setRunning] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const paint = useRef<boolean | null>(null);
+  const host = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  // The two 144-cell grids only matter once the lab is near the viewport; mounting them late keeps hydration light.
+  useEffect(() => {
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setMounted(true); io.disconnect(); } }, { rootMargin: '600px 0px' });
+    if (host.current) io.observe(host.current);
+    return () => io.disconnect();
+  }, []);
 
   useEffect(() => () => clearTimeout(timer.current), []);
 
@@ -89,7 +98,7 @@ export default function Lab() {
           situs web: hasil yang tepat dengan kerja yang paling sedikit.
         </SectionTitle>
 
-        <div className="lab-panel" data-reveal>
+        <div className="lab-panel" data-reveal ref={host}>
           <div className="lab-toolbar">
             <button className="btn btn-gold btn-sm" onClick={race} disabled={running}>
               <Play size={15} /> {running ? 'Berjalan…' : 'Mulai Balapan'}
@@ -130,7 +139,7 @@ export default function Lab() {
                     onPointerUp={() => (paint.current = null)}
                     onPointerLeave={() => (paint.current = null)}
                   >
-                    {Array.from({ length: cols * rows }, (_, i) => {
+                    {mounted && Array.from({ length: cols * rows }, (_, i) => {
                       const state = i === start ? 'start' : i === end ? 'end' : walls.has(i) ? 'wall' : path.has(i) ? 'path' : visited.has(i) ? 'visited' : '';
                       const Cell = editable ? 'button' : 'span';
                       return (
