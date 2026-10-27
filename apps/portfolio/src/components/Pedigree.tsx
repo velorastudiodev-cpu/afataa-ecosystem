@@ -1,4 +1,4 @@
-import { Medal, Award } from 'lucide-react';
+import { Medal, Award, Code2, Terminal, ArrowUpRight, Atom, Wind, Box, Database, Component } from 'lucide-react';
 import SectionTitle from './SectionTitle';
 import { content } from '@/lib/content';
 
@@ -7,7 +7,16 @@ const pillars = [
   ['Pengembang Situs Web Modern', 'Pengembangan antarmuka web responsif yang mengutamakan kecepatan muat halaman, kejelasan struktur kode, dan kenyamanan pengguna di berbagai perangkat.'],
   ['Pengembang Perangkat Lunak & Sistem CMS', 'Pembangunan perangkat lunak kustom dan dasbor manajemen konten mandiri yang memudahkan pemilik bisnis mengelola sistemnya tanpa bergantung pada pengembang.'],
 ];
-const tools = ['TypeScript', 'C++', 'Next.js', 'React', 'Tailwind CSS', 'Node.js', 'PostgreSQL', 'Figma', 'Algoritma & Struktur Data', 'Teori Graf', 'Pemrograman Dinamis'];
+const tools = [
+  { name: 'TypeScript', detail: 'Fondasi kode bertipe ketat', icon: Code2 },
+  { name: 'C++', detail: 'Komputasi & algoritma kompetitif', icon: Terminal },
+  { name: 'Next.js', detail: 'Arsitektur aplikasi web modern', icon: ArrowUpRight },
+  { name: 'React', detail: 'Sistem komponen antarmuka', icon: Atom },
+  { name: 'Tailwind CSS', detail: 'Sistem token desain & tata letak', icon: Wind },
+  { name: 'Node.js', detail: 'Pemrosesan logika sisi server', icon: Box },
+  { name: 'PostgreSQL', detail: 'Manajemen basis data terstruktur', icon: Database },
+  { name: 'Figma', detail: 'Eksplorasi desain & prototipe UI/UX', icon: Component },
+];
 
 export default function Pedigree() {
   return (
@@ -45,15 +54,23 @@ export default function Pedigree() {
             </li>
           ))}
         </ol>
-      </div>
 
-      <div className="marquee" aria-label="Perangkat kerja dan teknologi">
-        {/* Duplicate track for a seamless loop; the copy is hidden from assistive tech. */}
-        {[0, 1].map((copy) => (
-          <ul key={copy} aria-hidden={copy === 1 || undefined}>
-            {tools.map((t) => <li key={t}>{t}</li>)}
+        <article className="toolbox" data-reveal>
+          <div className="toolbox-heading">
+            <span className="mono">Perangkat kerja &amp; teknologi</span>
+            <h3>Beragam teknologi modern <em>dalam satu ekosistem terpadu.</em></h3>
+            <p>Mulai dari perancangan antarmuka awal hingga pengelolaan kueri basis data produksi.</p>
+          </div>
+          <ul className="tool-grid">
+            {tools.map(({ name, detail, icon: Icon }, i) => (
+              <li className="tool" key={name} style={{ '--i': i } as React.CSSProperties}>
+                <Icon size={22} strokeWidth={1.4} aria-hidden="true" />
+                <strong>{name}</strong>
+                <span>{detail}</span>
+              </li>
+            ))}
           </ul>
-        ))}
+        </article>
       </div>
     </section>
   );

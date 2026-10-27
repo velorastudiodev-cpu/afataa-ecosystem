@@ -47,15 +47,15 @@ export default function Masterpieces({ projects }: { projects: Masterpiece[] }) 
                   <img className="case-phone" src={p.image.replace('.webp', '-mobile-240.webp')} decoding="async" alt={`Tangkapan layar seluler ${name}`} loading="lazy" width={390} height={844} />
                 </figure>
                 <div className="case-copy">
-                  <p className="case-meta mono">
+                  <p className="case-meta">
                     <span className="case-index">{String(i + 1).padStart(2, '0')}</span>
-                    {categoryLabel[p.category]} · {p.subtitle.split(' · ').pop()}
+                    <span>{categoryLabel[p.category]}<span className="case-sub">{p.subtitle.split(' · ').pop()}</span></span>
                   </p>
                   <h3>{name}</h3>
                   {tagline && <p className="case-tagline"><em>{tagline}</em></p>}
                   <p className="case-summary">{p.summary}</p>
                   {paired && (
-                    <p className="case-pair mono"><Link2 size={14} /> Satu ekosistem dengan {paired.title.split(' — ')[0]}</p>
+                    <p className="case-pair"><Link2 size={15} /> Satu ekosistem dengan <b>{paired.title.split(' — ')[0]}</b></p>
                   )}
                   <div className="case-actions">
                     <a className="btn btn-light btn-sm" href={p.liveUrl} target="_blank" rel="noreferrer">

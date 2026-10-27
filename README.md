@@ -4,7 +4,7 @@ Public portfolio for Ahmad Afataa Kusdianto, implemented from the complete PRD v
 
 ## Apps
 
-- `apps/portfolio` — Next.js 15 static export, "Midnight Glacier" design: a live Dijkstra graph hero (2D canvas, click to re-run), case-study showcase with desktop + mobile captures and preview/report dialogs, OSN pedigree, process timeline, a Dijkstra vs A* race lab on a paintable maze, and a contact brief builder (WhatsApp/email prefill, Cal.com date strip).
+- `apps/portfolio` — Next.js 15 static export, "Midnight Glacier" design: a live Dijkstra graph hero (2D canvas, click to re-run), case-study showcase with desktop + mobile captures and preview/report dialogs, OSN pedigree with the tool grid, an animated process timeline over a second live graph, a lab with a Dijkstra vs A* race on a paintable maze and a design-token studio, and a contact brief builder (WhatsApp/email prefill, Cal.com date strip).
 - `apps/studio` — retained separate control-panel prototype; its production auth and data bridge are planned after the public site is locked.
 
 ## Commands

@@ -5,7 +5,6 @@ import './globals.css';
 // next/font generates metric-matched fallbacks, so the swap to the web font does not shift layout.
 const sans = localFont({ src: './fonts/instrument.woff2', weight: '400 700', variable: '--font-sans', display: 'swap' });
 const serif = localFont({ src: './fonts/instrument-serif-italic.woff2', weight: '400', style: 'italic', variable: '--font-serif', display: 'swap', adjustFontFallback: 'Times New Roman' });
-const mono = localFont({ src: './fonts/mono.woff2', weight: '400 500', variable: '--font-mono', display: 'swap', preload: false });
 
 const origin = 'https://afataa-ecosystem.vercel.app';
 const title = 'Ahmad Afataa Kusdianto — Pengembang Web, Desainer UI/UX & Pengembang Perangkat Lunak';
@@ -56,7 +55,7 @@ const structuredData = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" className={`${sans.variable} ${serif.variable} ${mono.variable}`} suppressHydrationWarning>
+    <html lang="id" className={`${sans.variable} ${serif.variable}`} suppressHydrationWarning>
       <head>
         {/* Hide reveal targets only when JS runs, so content never stays invisible without it. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />

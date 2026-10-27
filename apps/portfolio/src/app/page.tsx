@@ -29,7 +29,6 @@ export default function Home() {
           <p className="footer-mark" aria-hidden="true">Afataa<b>.</b></p>
           <div className="footer-row">
             <span>© 2026 {content.profile.fullName}. Hak cipta dilindungi.</span>
-            <span className="mono">{content.masterpieces.length} sistem produksi aktif · Dibangun dengan Next.js</span>
             <a href="#top">Kembali ke atas ↑</a>
           </div>
         </div>

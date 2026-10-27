@@ -14,9 +14,6 @@ export default function Hero() {
     <section id="hero" className="hero">
       <GraphField />
       <div className="hero-inner shell">
-        <p className="hero-status anim" style={{ '--d': 0 } as React.CSSProperties}>
-          <span className="pulse" /> {profile.availabilityText}
-        </p>
         <p className="hero-name mono anim" style={{ '--d': 1 } as React.CSSProperties}>
           {profile.fullName} <span className="hide-sm">— {profile.roles.join(' / ')}</span>
         </p>

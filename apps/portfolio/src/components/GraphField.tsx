@@ -11,7 +11,7 @@ function rng(seed: number) {
   return () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646;
 }
 
-export default function GraphField() {
+export default function GraphField({ hud = true, className = '' }: { hud?: boolean; className?: string }) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const [stats, setStats] = useState('dijkstra · menyiapkan graf…');
   const [ready, setReady] = useState(false);
@@ -161,11 +161,13 @@ export default function GraphField() {
       host.addEventListener('pointerdown', click);
       document.addEventListener('visibilitychange', resume);
     };
-    const kick = () => idle(boot, { timeout: 1500 });
+    // Off-screen graphs (e.g. further down the page) wait until they are about to scroll into view.
+    const gate = new IntersectionObserver(([e]) => { if (e.isIntersecting) { gate.disconnect(); idle(boot, { timeout: 1500 }); } }, { rootMargin: '300px 0px' });
+    const kick = () => gate.observe(el);
     if (document.readyState === 'complete') kick(); else addEventListener('load', kick, { once: true });
 
     return () => {
-      cancelled = true; cancelAnimationFrame(frame); resize.disconnect(); seen.disconnect();
+      cancelled = true; cancelAnimationFrame(frame); gate.disconnect(); resize.disconnect(); seen.disconnect();
       removeEventListener('load', kick);
       host.removeEventListener('pointermove', move); host.removeEventListener('pointerleave', leave); host.removeEventListener('pointerdown', click);
       document.removeEventListener('visibilitychange', resume);
@@ -174,8 +176,8 @@ export default function GraphField() {
 
   return (
     <>
-      <canvas ref={canvas} className={`graph-field ${ready ? 'is-ready' : ''}`} aria-hidden="true" />
-      <p className="graph-hud mono" aria-hidden="true"><span className="hud-dot" />{stats}</p>
+      <canvas ref={canvas} className={`graph-field ${className} ${ready ? 'is-ready' : ''}`} aria-hidden="true" />
+      {hud && <p className="graph-hud mono" aria-hidden="true"><span className="hud-dot" />{stats}</p>}
     </>
   );
 }

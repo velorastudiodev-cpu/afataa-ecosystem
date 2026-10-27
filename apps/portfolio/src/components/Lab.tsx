@@ -3,6 +3,9 @@ import { useEffect, useRef, useState } from 'react';
 import { Play, RotateCcw, Eraser, Shuffle } from 'lucide-react';
 import { findPath, type Algorithm } from '@/lib/pathfinding';
 import SectionTitle from './SectionTitle';
+import TokenStudio from './TokenStudio';
+
+const tabs = [['race', 'Balapan Algoritma'], ['tokens', 'Kustomisasi Token']] as const;
 
 const cols = 16, rows = 9, start = 4 * cols + 1, end = 4 * cols + 14;
 const startingWalls = [...[1, 2, 3, 4, 5].map((r) => r * cols + 6), ...[3, 4, 5, 6, 7].map((r) => r * cols + 10)];
@@ -15,6 +18,7 @@ export default function Lab() {
   const [walls, setWalls] = useState(() => new Set(startingWalls));
   const [lanes, setLanes] = useState<Record<Algorithm, Lane>>({ dijkstra: idle, astar: idle });
   const [running, setRunning] = useState(false);
+  const [tab, setTab] = useState<(typeof tabs)[number][0]>('race');
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const paint = useRef<boolean | null>(null);
   const host = useRef<HTMLDivElement>(null);
@@ -92,13 +96,39 @@ export default function Lab() {
   return (
     <section id="lab" className="section lab">
       <div className="shell">
-        <SectionTitle number="04" label="Laboratorium" title="Dua algoritma, satu labirin." italic="Siapa yang lebih efisien?">
-          Dijkstra menyebar ke segala arah, A* dipandu heuristik menuju tujuan. Keduanya menemukan rute
-          terpendek, tetapi dengan biaya yang berbeda. Prinsip yang sama berlaku saat saya mengoptimalkan
-          situs web: hasil yang tepat dengan kerja yang paling sedikit.
+        <SectionTitle number="04" label="Laboratorium" title="Logika dan desain," italic="uji langsung di sini.">
+          Adu Dijkstra melawan A* di labirin yang Anda gambar sendiri, lalu racik token desain sebuah
+          komponen dan lihat hasilnya seketika. Dua sisi dari cara saya bekerja: efisien di balik layar,
+          presisi di depan layar.
         </SectionTitle>
 
-        <div className="lab-panel" data-reveal ref={host}>
+        <div className="lab-tabs" role="tablist" aria-label="Laboratorium interaktif" data-reveal>
+          {tabs.map(([id, name], i) => (
+            <button
+              key={id}
+              id={`tab-${id}`}
+              role="tab"
+              aria-selected={tab === id}
+              aria-controls={`panel-${id}`}
+              tabIndex={tab === id ? 0 : -1}
+              onClick={() => setTab(id)}
+              onKeyDown={(e) => {
+                if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+                const next = tabs[(i + 1) % tabs.length][0];
+                setTab(next);
+                document.getElementById(`tab-${next}`)?.focus();
+              }}
+            >
+              <span className="mono">0{i + 1}</span>{name}
+            </button>
+          ))}
+        </div>
+
+        <div className="lab-panel" role="tabpanel" id="panel-tokens" aria-labelledby="tab-tokens" hidden={tab !== 'tokens'}>
+          <TokenStudio />
+        </div>
+
+        <div className="lab-panel" role="tabpanel" id="panel-race" aria-labelledby="tab-race" hidden={tab !== 'race'} ref={host}>
           <div className="lab-toolbar">
             <button className="btn btn-gold btn-sm" onClick={race} disabled={running}>
               <Play size={15} /> {running ? 'Berjalan…' : 'Mulai Balapan'}
